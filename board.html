@@ -6,320 +6,199 @@
 <title>K-WorkBridge — 커뮤니티</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --green-50:#f0f7e8;--green-100:#e4f0d5;--green-200:#c8e3aa;
-  --green-400:#8bbe5a;--green-600:#5a8f2e;--green-800:#2d5010;
-  --gray-50:#f8f9f7;--gray-100:#f0f2ee;--gray-300:#c8cdc3;
-  --gray-500:#7a8270;--gray-700:#3d4438;--gray-900:#1a1f16;
-  --white:#ffffff;--blue-50:#eff6ff;--blue-600:#2563eb;
-  --amber-50:#fffbeb;--amber-600:#d97706;
-  --purple-50:#f5f3ff;--purple-600:#7c3aed;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+:root{--green-50:#f0f7e8;--green-100:#e4f0d5;--green-200:#c8e3aa;--green-400:#8bbe5a;--green-600:#5a8f2e;--green-800:#2d5010;--gray-50:#f8f9f7;--gray-100:#f0f2ee;--gray-300:#c8cdc3;--gray-500:#7a8270;--gray-700:#3d4438;--gray-900:#1a1f16;--white:#fff}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{background:var(--gray-50);color:var(--gray-900);font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.7}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--green-100);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .nav-logo-icon{width:32px;height:32px;background:var(--green-600);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:500}
-.nav-logo-text{font-size:17px;font-weight:500;color:var(--gray-900)}
-.nav-logo-text span{color:var(--green-600)}
+.nav-logo-text{font-size:17px;font-weight:500;color:var(--gray-900)}.nav-logo-text span{color:var(--green-600)}
 .nav-links{display:flex;align-items:center;gap:8px}
 .nav-link{padding:6px 14px;border-radius:8px;font-size:14px;color:var(--gray-500);text-decoration:none;transition:all 0.2s}
 .nav-link:hover,.nav-link.active{background:var(--green-100);color:var(--green-800)}
-.nav-cta{padding:9px 22px;background:var(--green-600);color:white;border:none;border-radius:8px;font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;transition:background 0.2s;text-decoration:none}
-.nav-cta:hover{background:var(--green-800)}
-
-/* PAGE HEADER */
+.nav-right{display:flex;align-items:center;gap:10px}
+.lang-btn{padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s}
+.lang-btn.active,.lang-btn:hover{background:var(--green-600);color:white;border-color:var(--green-600)}
+.nav-cta{padding:9px 20px;background:var(--green-600);color:white;border:none;border-radius:8px;font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.nav-user{display:none;align-items:center;gap:10px}
+.nav-avatar{width:32px;height:32px;border-radius:50%;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--green-800);overflow:hidden}
+.nav-avatar img{width:100%;height:100%;object-fit:cover}
+.nav-username{font-size:14px;color:var(--gray-700)}
+.nav-logout{padding:6px 12px;background:transparent;border:1px solid var(--green-200);border-radius:8px;font-size:13px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif}
 .page-header{background:linear-gradient(135deg,var(--white) 0%,var(--green-50) 100%);padding:100px 48px 48px;border-bottom:1px solid var(--green-100)}
 .page-header-inner{max-width:1200px;margin:0 auto}
 .breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500);margin-bottom:16px}
 .breadcrumb a{color:var(--green-600);text-decoration:none}
-.breadcrumb span{color:var(--gray-300)}
 .page-title{font-family:'DM Serif Display',serif;font-size:36px;font-weight:400;color:var(--gray-900);margin-bottom:8px}
 .page-desc{font-size:15px;color:var(--gray-500)}
-
-/* BOARD TABS */
 .board-tabs{background:white;border-bottom:1px solid var(--green-100);position:sticky;top:64px;z-index:100}
-.board-tabs-inner{max-width:1200px;margin:0 auto;padding:0 48px;display:flex;align-items:center;gap:4px;overflow-x:auto}
+.board-tabs-inner{max-width:1200px;margin:0 auto;padding:0 48px;display:flex;gap:4px;overflow-x:auto}
 .tab-btn{padding:16px 20px;font-size:14px;color:var(--gray-500);border:none;background:transparent;cursor:pointer;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;border-bottom:2px solid transparent;transition:all 0.2s;display:flex;align-items:center;gap:8px}
-.tab-btn:hover{color:var(--green-600)}
 .tab-btn.active{color:var(--green-600);border-bottom-color:var(--green-600);font-weight:500}
 .tab-badge{padding:2px 7px;border-radius:10px;font-size:11px;font-weight:500}
-
-/* MAIN LAYOUT */
 .board-main{max-width:1200px;margin:0 auto;padding:32px 48px;display:grid;grid-template-columns:1fr 280px;gap:32px}
-
-/* BOARD CONTROLS */
 .board-controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px;flex-wrap:wrap}
 .search-box{display:flex;align-items:center;gap:8px;background:white;border:1px solid var(--green-100);border-radius:10px;padding:8px 16px;flex:1;max-width:360px}
 .search-box input{border:none;outline:none;font-size:14px;color:var(--gray-900);font-family:'Noto Sans KR',sans-serif;background:transparent;width:100%}
 .search-box input::placeholder{color:var(--gray-300)}
-.search-icon{color:var(--gray-300);font-size:16px}
 .controls-right{display:flex;align-items:center;gap:10px}
 .view-toggle{display:flex;border:1px solid var(--green-200);border-radius:8px;overflow:hidden}
 .view-btn{padding:7px 12px;border:none;background:transparent;cursor:pointer;font-size:16px;color:var(--gray-500);transition:all 0.2s}
 .view-btn.active{background:var(--green-600);color:white}
 .sort-select{padding:8px 12px;border:1px solid var(--green-200);border-radius:8px;font-size:13px;color:var(--gray-700);font-family:'Noto Sans KR',sans-serif;background:white;cursor:pointer;outline:none}
-.write-btn{padding:9px 20px;background:var(--green-600);color:white;border:none;border-radius:8px;font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;transition:background 0.2s;white-space:nowrap}
+.write-btn{padding:9px 20px;background:var(--green-600);color:white;border:none;border-radius:8px;font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer}
 .write-btn:hover{background:var(--green-800)}
-
-/* LIST VIEW */
-.list-view{display:block}
-.list-header{display:grid;grid-template-columns:60px 1fr 100px 120px 80px;gap:12px;padding:10px 20px;background:var(--gray-100);border-radius:8px;font-size:12px;color:var(--gray-500);font-weight:400;margin-bottom:8px}
-.list-item{display:grid;grid-template-columns:60px 1fr 100px 120px 80px;gap:12px;padding:14px 20px;background:white;border:1px solid var(--green-100);border-radius:10px;margin-bottom:8px;transition:all 0.2s;cursor:pointer;align-items:center}
+.list-header{display:grid;grid-template-columns:60px 1fr 100px 120px 80px;gap:12px;padding:10px 20px;background:var(--gray-100);border-radius:8px;font-size:12px;color:var(--gray-500);margin-bottom:8px}
+.list-item{display:grid;grid-template-columns:60px 1fr 100px 120px 80px;gap:12px;padding:14px 20px;background:white;border:1px solid var(--green-100);border-radius:10px;margin-bottom:8px;cursor:pointer;align-items:center;transition:all 0.2s}
 .list-item:hover{border-color:var(--green-400);box-shadow:0 4px 16px rgba(90,143,46,0.08);transform:translateY(-1px)}
 .list-item.pinned{background:var(--green-50);border-color:var(--green-200)}
 .item-num{font-size:13px;color:var(--gray-500);text-align:center}
-.item-num.pin{color:var(--green-600);font-weight:500}
 .item-title-wrap{display:flex;align-items:center;gap:8px;min-width:0}
 .item-cat{padding:2px 8px;border-radius:4px;font-size:11px;font-weight:500;white-space:nowrap}
 .cat-community{background:#eff6ff;color:#1d4ed8}
 .cat-notice{background:var(--green-100);color:var(--green-800)}
 .cat-job{background:#fffbeb;color:#92400e}
 .cat-qna{background:#f5f3ff;color:#5b21b6}
-.item-title{font-size:14px;color:var(--gray-900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color 0.2s}
+.item-title{font-size:14px;color:var(--gray-900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .list-item:hover .item-title{color:var(--green-600)}
-.item-new{display:inline-block;width:6px;height:6px;background:#ef4444;border-radius:50%;margin-left:4px;vertical-align:middle;flex-shrink:0}
-.item-author{font-size:13px;color:var(--gray-500);text-align:center}
-.item-date{font-size:13px;color:var(--gray-500);text-align:center}
-.item-views{font-size:13px;color:var(--gray-500);text-align:center;display:flex;align-items:center;justify-content:center;gap:4px}
-
-/* CARD VIEW */
-.card-view{display:none;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.item-author,.item-date{font-size:13px;color:var(--gray-500);text-align:center}
+.item-views{font-size:13px;color:var(--gray-500);text-align:center}
+#cardContainer{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 .board-card{background:white;border:1px solid var(--green-100);border-radius:14px;padding:24px;cursor:pointer;transition:all 0.3s}
 .board-card:hover{border-color:var(--green-400);box-shadow:0 8px 32px rgba(90,143,46,0.1);transform:translateY(-3px)}
-.board-card.pinned{background:var(--green-50);border-color:var(--green-200)}
 .card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.card-title{font-size:15px;font-weight:500;color:var(--gray-900);margin-bottom:8px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card-preview{font-size:13px;color:var(--gray-500);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:16px}
+.card-title-t{font-size:15px;font-weight:500;color:var(--gray-900);margin-bottom:8px;line-height:1.5}
+.card-preview{font-size:13px;color:var(--gray-500);line-height:1.7;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .card-bottom{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--gray-500);border-top:1px solid var(--green-100);padding-top:12px}
-.card-meta{display:flex;align-items:center;gap:12px}
-.card-stats{display:flex;align-items:center;gap:10px}
-
-/* PAGINATION */
 .pagination{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:28px}
 .page-btn{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--green-200);border-radius:8px;font-size:14px;color:var(--gray-500);cursor:pointer;background:white;transition:all 0.2s;font-family:'Noto Sans KR',sans-serif}
 .page-btn:hover,.page-btn.active{background:var(--green-600);color:white;border-color:var(--green-600)}
-
-/* SIDEBAR */
 .sidebar{}
 .side-card{background:white;border:1px solid var(--green-100);border-radius:14px;padding:24px;margin-bottom:20px}
 .side-title{font-size:15px;font-weight:500;color:var(--gray-900);margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .side-title-icon{width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px}
-.notice-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--green-100);cursor:pointer}
-.notice-item:last-child{border-bottom:none;padding-bottom:0}
-.notice-dot{width:6px;height:6px;border-radius:50%;background:var(--green-600);flex-shrink:0;margin-top:7px}
-.notice-text{font-size:13px;color:var(--gray-700);line-height:1.5;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.notice-date{font-size:11px;color:var(--gray-300);white-space:nowrap}
-.popular-item{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--green-100);cursor:pointer}
-.popular-item:last-child{border-bottom:none}
-.popular-num{font-family:'DM Serif Display',serif;font-size:18px;color:var(--green-200);min-width:20px;text-align:center}
-.popular-num.top{color:var(--green-600)}
-.popular-text{font-size:13px;color:var(--gray-700);line-height:1.4;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.notice-item{padding:10px 0;border-bottom:1px solid var(--green-100)}
+.notice-item:last-child{border-bottom:none}
+.notice-text{font-size:13px;color:var(--gray-700);line-height:1.5}
+.notice-date{font-size:11px;color:var(--gray-300);margin-top:2px}
 .tag-cloud{display:flex;flex-wrap:wrap;gap:8px}
 .tag{padding:5px 12px;background:var(--green-50);border:1px solid var(--green-200);border-radius:20px;font-size:12px;color:var(--green-800);cursor:pointer;transition:all 0.2s}
-.tag:hover{background:var(--green-600);color:white;border-color:var(--green-600)}
-
-/* WRITE MODAL */
+.tag:hover{background:var(--green-600);color:white}
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:500;align-items:center;justify-content:center;padding:24px}
 .modal-overlay.open{display:flex}
 .modal{background:white;border-radius:20px;width:100%;max-width:680px;max-height:90vh;overflow-y:auto;animation:modalUp 0.25s ease}
 @keyframes modalUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .modal-header{padding:28px 32px 0;display:flex;align-items:center;justify-content:space-between}
 .modal-title{font-size:20px;font-weight:500;color:var(--gray-900)}
-.modal-close{width:36px;height:36px;border:none;background:var(--gray-100);border-radius:8px;font-size:18px;cursor:pointer;color:var(--gray-500);display:flex;align-items:center;justify-content:center;transition:background 0.2s}
-.modal-close:hover{background:var(--gray-300)}
+.modal-close{width:36px;height:36px;border:none;background:var(--gray-100);border-radius:8px;font-size:18px;cursor:pointer;color:var(--gray-500)}
 .modal-body{padding:24px 32px 32px}
 .form-group{margin-bottom:20px}
 .form-label{font-size:13px;font-weight:500;color:var(--gray-700);margin-bottom:8px;display:block}
-.form-select,.form-input{width:100%;padding:10px 14px;border:1px solid var(--green-200);border-radius:10px;font-size:14px;font-family:'Noto Sans KR',sans-serif;color:var(--gray-900);outline:none;transition:border-color 0.2s;background:white}
-.form-select:focus,.form-input:focus{border-color:var(--green-600)}
-.form-textarea{width:100%;padding:14px;border:1px solid var(--green-200);border-radius:10px;font-size:14px;font-family:'Noto Sans KR',sans-serif;color:var(--gray-900);outline:none;transition:border-color 0.2s;resize:vertical;min-height:200px;line-height:1.7}
+.form-select,.form-input-m{width:100%;padding:10px 14px;border:1px solid var(--green-200);border-radius:10px;font-size:14px;font-family:'Noto Sans KR',sans-serif;color:var(--gray-900);outline:none;background:white}
+.form-select:focus,.form-input-m:focus{border-color:var(--green-600)}
+.form-textarea{width:100%;padding:14px;border:1px solid var(--green-200);border-radius:10px;font-size:14px;font-family:'Noto Sans KR',sans-serif;color:var(--gray-900);outline:none;resize:vertical;min-height:200px;line-height:1.7}
 .form-textarea:focus{border-color:var(--green-600)}
 .form-footer{display:flex;gap:12px;justify-content:flex-end;margin-top:24px}
-.btn-cancel{padding:10px 24px;background:var(--gray-100);color:var(--gray-700);border:none;border-radius:10px;font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;transition:background 0.2s}
-.btn-cancel:hover{background:var(--gray-300)}
-.btn-submit{padding:10px 28px;background:var(--green-600);color:white;border:none;border-radius:10px;font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;transition:background 0.2s}
-.btn-submit:hover{background:var(--green-800)}
-
-/* TOAST */
+.btn-cancel{padding:10px 24px;background:var(--gray-100);color:var(--gray-700);border:none;border-radius:10px;font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer}
+.btn-save{padding:10px 28px;background:var(--green-600);color:white;border:none;border-radius:10px;font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer}
+.btn-save:hover{background:var(--green-800)}
+.post-detail-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:flex-start;justify-content:center;padding:80px 24px 24px;overflow-y:auto}
+.post-detail-overlay.open{display:flex}
+.post-detail{background:white;border-radius:20px;width:100%;max-width:760px;animation:modalUp 0.25s ease}
+.pd-header{padding:32px 36px 24px;border-bottom:1px solid var(--green-100)}
+.pd-title{font-size:22px;font-weight:500;color:var(--gray-900);line-height:1.4;margin:12px 0 16px}
+.pd-meta{display:flex;gap:16px;font-size:13px;color:var(--gray-500)}
+.pd-body{padding:32px 36px;font-size:15px;color:var(--gray-700);line-height:1.9;white-space:pre-wrap}
+.pd-footer{padding:16px 36px 32px;display:flex;justify-content:flex-end}
+.pd-close{padding:9px 24px;background:var(--gray-100);border:none;border-radius:8px;font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer}
 .toast{position:fixed;bottom:32px;right:32px;background:var(--gray-900);color:white;padding:14px 22px;border-radius:12px;font-size:14px;z-index:1000;opacity:0;transform:translateY(10px);transition:all 0.3s;pointer-events:none}
 .toast.show{opacity:1;transform:translateY(0)}
-
-@media(max-width:900px){
-  nav{padding:0 20px}
-  .page-header{padding:90px 20px 32px}
-  .board-tabs-inner{padding:0 20px}
-  .board-main{padding:20px;grid-template-columns:1fr}
-  .sidebar{display:none}
-  .list-header{display:none}
-  .list-item{grid-template-columns:1fr;gap:6px}
-  .item-num,.item-author,.item-date,.item-views{display:none}
-}
+.loading-posts{text-align:center;padding:60px;color:var(--gray-300);font-size:14px}
+@media(max-width:900px){nav{padding:0 20px}.page-header{padding:90px 20px 32px}.board-tabs-inner{padding:0 20px}.board-main{padding:20px;grid-template-columns:1fr}.sidebar{display:none}.list-header{display:none}.list-item{grid-template-columns:1fr;gap:6px}.item-num,.item-author,.item-date,.item-views{display:none}}
 </style>
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="nav-logo">
     <div class="nav-logo-icon">K</div>
     <div class="nav-logo-text">K-Work<span>Bridge</span></div>
   </a>
   <div class="nav-links">
-    <a href="index.html" class="nav-link" data-t="nav_home">홈</a>
-    <a href="board.html" class="nav-link active" data-t="nav_community">커뮤니티</a>
-    <a href="education.html" class="nav-link" data-t="nav_education">직무교육</a>
-    <a href="internship.html" class="nav-link" data-t="nav_internship">인턴십</a>
+    <a href="index.html" class="nav-link">홈</a>
+    <a href="board.html" class="nav-link active">커뮤니티</a>
+    <a href="education.html" class="nav-link">직무교육</a>
+    <a href="internship.html" class="nav-link">인턴십</a>
   </div>
-  <div style="display:flex;align-items:center;gap:10px">
-    <div class="lang-switcher" style="display:flex;gap:4px">
-      <button class="lang-btn" data-lang="ko" onclick="setLang('ko')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">한</button>
-      <button class="lang-btn" data-lang="en" onclick="setLang('en')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">EN</button>
-      <button class="lang-btn" data-lang="zh" onclick="setLang('zh')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">中</button>
-      <button class="lang-btn" data-lang="ja" onclick="setLang('ja')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">日</button>
-      <button class="lang-btn" data-lang="vi" onclick="setLang('vi')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">VI</button>
+  <div class="nav-right">
+    <div style="display:flex;gap:4px">
+      <button class="lang-btn" data-lang="ko" onclick="setLang('ko')">한</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
+      <button class="lang-btn" data-lang="ja" onclick="setLang('ja')">日</button>
+      <button class="lang-btn" data-lang="vi" onclick="setLang('vi')">VI</button>
     </div>
-    <a href="#" class="nav-cta" data-t="nav_login">로그인</a>
+    <div class="nav-user" id="nav-user-info">
+      <div class="nav-avatar" id="nav-avatar">?</div>
+      <span class="nav-username" id="nav-user-name"></span>
+      <button class="nav-logout" onclick="auth.signOut()">로그아웃</button>
+    </div>
+    <a href="auth.html?redirect=board.html" class="nav-cta" id="nav-login-btn">로그인</a>
   </div>
 </nav>
 
 <div class="page-header">
   <div class="page-header-inner">
-    <div class="breadcrumb">
-      <a href="index.html">홈</a>
-      <span>›</span>
-      <span>커뮤니티</span>
-    </div>
-    <div class="page-title" data-t="board_title">커뮤니티</div>
-    <div class="page-desc" data-t="board_desc">다문화 청년들이 함께 소통하고 정보를 나누는 공간입니다</div>
+    <div class="breadcrumb"><a href="index.html">홈</a><span>›</span><span>커뮤니티</span></div>
+    <div class="page-title">커뮤니티</div>
+    <div class="page-desc">다문화 청년들이 함께 소통하고 정보를 나누는 공간입니다</div>
   </div>
 </div>
 
 <div class="board-tabs">
   <div class="board-tabs-inner">
-    <button class="tab-btn active" onclick="switchTab('all')">
-      <span data-t="tab_all">전체</span> <span class="tab-badge" style="background:var(--green-100);color:var(--green-800)" id="badge-all">48</span>
-    </button>
-    <button class="tab-btn" onclick="switchTab('notice')">
-      <span data-t="tab_notice">📢 공지사항</span> <span class="tab-badge" style="background:var(--green-100);color:var(--green-800)" id="badge-notice">6</span>
-    </button>
-    <button class="tab-btn" onclick="switchTab('community')">
-      <span data-t="tab_community">🤝 커뮤니티</span> <span class="tab-badge" style="background:#eff6ff;color:#1d4ed8" id="badge-community">24</span>
-    </button>
-    <button class="tab-btn" onclick="switchTab('job')">
-      <span data-t="tab_job">💼 취업정보</span> <span class="tab-badge" style="background:#fffbeb;color:#92400e" id="badge-job">12</span>
-    </button>
-    <button class="tab-btn" onclick="switchTab('qna')">
-      <span data-t="tab_qna">❓ Q&A</span> <span class="tab-badge" style="background:#f5f3ff;color:#5b21b6" id="badge-qna">6</span>
-    </button>
+    <button class="tab-btn active" onclick="switchTab('all')">전체 <span class="tab-badge" style="background:var(--green-100);color:var(--green-800)" id="badge-all">0</span></button>
+    <button class="tab-btn" onclick="switchTab('notice')">📢 공지사항 <span class="tab-badge" style="background:var(--green-100);color:var(--green-800)" id="badge-notice">0</span></button>
+    <button class="tab-btn" onclick="switchTab('community')">🤝 커뮤니티 <span class="tab-badge" style="background:#eff6ff;color:#1d4ed8" id="badge-community">0</span></button>
+    <button class="tab-btn" onclick="switchTab('job')">💼 취업정보 <span class="tab-badge" style="background:#fffbeb;color:#92400e" id="badge-job">0</span></button>
+    <button class="tab-btn" onclick="switchTab('qna')">❓ Q&A <span class="tab-badge" style="background:#f5f3ff;color:#5b21b6" id="badge-qna">0</span></button>
   </div>
 </div>
 
 <div class="board-main">
   <div>
     <div class="board-controls">
-      <div class="search-box">
-        <span class="search-icon">🔍</span>
-        <input type="text" placeholder="검색어를 입력하세요" data-t="search_placeholder" id="searchInput" oninput="filterPosts()">
-      </div>
+      <div class="search-box"><span>🔍</span><input type="text" placeholder="검색어를 입력하세요" id="searchInput" oninput="filterPosts()"></div>
       <div class="controls-right">
         <div class="view-toggle">
-          <button class="view-btn active" onclick="setView('list')" title="목록형">☰</button>
-          <button class="view-btn" onclick="setView('card')" title="카드형">⊞</button>
+          <button class="view-btn active" onclick="setView('list')">☰</button>
+          <button class="view-btn" onclick="setView('card')">⊞</button>
         </div>
         <select class="sort-select" onchange="sortPosts(this.value)">
-          <option value="latest" data-t="sort_latest">최신순</option>
-          <option value="views" data-t="sort_views">조회순</option>
-          <option value="popular" data-t="sort_popular">인기순</option>
+          <option value="latest">최신순</option>
+          <option value="views">조회순</option>
         </select>
-        <button class="write-btn" onclick="openModal()" data-t="new_post">✏️ 글쓰기</button>
+        <button class="write-btn" onclick="openWrite()">✏️ 글쓰기</button>
       </div>
     </div>
-
-    <!-- 목록형 -->
-    <div class="list-view" id="listView">
+    <div id="listView">
       <div class="list-header">
-        <span style="text-align:center" data-t="list_num">번호</span>
-        <span data-t="list_title">제목</span>
-        <span style="text-align:center" data-t="list_author">작성자</span>
-        <span style="text-align:center" data-t="list_date">날짜</span>
-        <span style="text-align:center" data-t="list_views">조회</span>
+        <span style="text-align:center">번호</span><span>제목</span>
+        <span style="text-align:center">작성자</span><span style="text-align:center">날짜</span><span style="text-align:center">조회</span>
       </div>
-      <div id="listContainer"></div>
+      <div id="listContainer"><div class="loading-posts">게시글을 불러오는 중...</div></div>
     </div>
-
-    <!-- 카드형 -->
-    <div class="card-view" id="cardView">
-      <div id="cardContainer" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px"></div>
-    </div>
-
+    <div id="cardView" style="display:none"><div id="cardContainer"></div></div>
     <div class="pagination" id="pagination"></div>
   </div>
-
-  <!-- 사이드바 -->
   <div class="sidebar">
     <div class="side-card">
-      <div class="side-title">
-        <div class="side-title-icon" style="background:var(--green-100)">📢</div>
-        <span data-t="side_latest">최신 공지사항</span>
-      </div>
-      <div class="notice-item" onclick="switchTab('notice')">
-        <div class="notice-dot"></div>
-        <div>
-          <div class="notice-text">2026년 상반기 인턴십 매칭 프로그램 신청 안내</div>
-          <div class="notice-date">2026.04.15</div>
-        </div>
-      </div>
-      <div class="notice-item" onclick="switchTab('notice')">
-        <div class="notice-dot"></div>
-        <div>
-          <div class="notice-text">직무 교육 신규 과정 오픈 안내 (IT/마케팅)</div>
-          <div class="notice-date">2026.04.10</div>
-        </div>
-      </div>
-      <div class="notice-item" onclick="switchTab('notice')">
-        <div class="notice-dot"></div>
-        <div>
-          <div class="notice-text">K-WorkBridge 서비스 이용약관 개정 안내</div>
-          <div class="notice-date">2026.04.01</div>
-        </div>
-      </div>
+      <div class="side-title"><div class="side-title-icon" style="background:var(--green-100)">📢</div>최신 공지</div>
+      <div class="notice-item"><div class="notice-text">2026년 고용노동부 미래내일 일경험 참여자 모집</div><div class="notice-date">2026.04.15</div></div>
+      <div class="notice-item"><div class="notice-text">직무 교육 신규 과정 오픈 (IT/마케팅)</div><div class="notice-date">2026.04.10</div></div>
+      <div class="notice-item"><div class="notice-text">서비스 이용약관 개정 안내</div><div class="notice-date">2026.04.01</div></div>
     </div>
-
     <div class="side-card">
-      <div class="side-title">
-        <div class="side-title-icon" style="background:#fffbeb">🔥</div>
-        인기 게시글
-      </div>
-      <div class="popular-item">
-        <div class="popular-num top">1</div>
-        <div class="popular-text">삼성전자 다문화 청년 채용 공고 공유합니다</div>
-      </div>
-      <div class="popular-item">
-        <div class="popular-num top">2</div>
-        <div class="popular-text">한국어 면접 준비 꿀팁 모음</div>
-      </div>
-      <div class="popular-item">
-        <div class="popular-num top">3</div>
-        <div class="popular-text">IT 직무 교육 수료 후기 — 정말 도움됐어요!</div>
-      </div>
-      <div class="popular-item">
-        <div class="popular-num">4</div>
-        <div class="popular-text">서울 생활 적응 꿀팁 공유</div>
-      </div>
-      <div class="popular-item">
-        <div class="popular-num">5</div>
-        <div class="popular-text">비자 관련 질문 있으신 분들 모여요</div>
-      </div>
-    </div>
-
-    <div class="side-card">
-      <div class="side-title">
-        <div class="side-title-icon" style="background:var(--green-100)">🏷️</div>
-        인기 태그
-      </div>
+      <div class="side-title"><div class="side-title-icon" style="background:var(--green-100)">🏷️</div>인기 태그</div>
       <div class="tag-cloud">
         <span class="tag" onclick="searchTag('인턴십')">#인턴십</span>
         <span class="tag" onclick="searchTag('취업정보')">#취업정보</span>
@@ -328,244 +207,192 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,
         <span class="tag" onclick="searchTag('마케팅')">#마케팅</span>
         <span class="tag" onclick="searchTag('비자')">#비자</span>
         <span class="tag" onclick="searchTag('면접')">#면접</span>
-        <span class="tag" onclick="searchTag('이력서')">#이력서</span>
-        <span class="tag" onclick="searchTag('네트워킹')">#네트워킹</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- 글쓰기 모달 -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+<div class="modal-overlay" id="writeModal" onclick="if(event.target===this)closeWrite()">
   <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">✏️ 글쓰기</div>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
+    <div class="modal-header"><div class="modal-title">✏️ 글쓰기</div><button class="modal-close" onclick="closeWrite()">✕</button></div>
     <div class="modal-body">
-      <div class="form-group">
-        <label class="form-label">게시판 선택</label>
+      <div class="form-group"><label class="form-label">게시판</label>
         <select class="form-select" id="postCategory">
           <option value="community">🤝 커뮤니티</option>
           <option value="job">💼 취업정보</option>
           <option value="qna">❓ Q&A</option>
         </select>
       </div>
-      <div class="form-group">
-        <label class="form-label">제목</label>
-        <input type="text" class="form-input" id="postTitle" placeholder="제목을 입력하세요">
-      </div>
-      <div class="form-group">
-        <label class="form-label">내용</label>
-        <textarea class="form-textarea" id="postContent" placeholder="내용을 입력하세요. 서로를 존중하는 따뜻한 커뮤니티를 만들어요 😊"></textarea>
-      </div>
-      <div class="form-group">
-        <label class="form-label">태그 (선택)</label>
-        <input type="text" class="form-input" id="postTag" placeholder="예: #인턴십 #취업 (쉼표로 구분)">
-      </div>
-      <div class="form-footer">
-        <button class="btn-cancel" onclick="closeModal()">취소</button>
-        <button class="btn-submit" onclick="submitPost()">등록하기</button>
-      </div>
+      <div class="form-group"><label class="form-label">제목</label><input type="text" class="form-input-m" id="postTitle" placeholder="제목을 입력하세요"></div>
+      <div class="form-group"><label class="form-label">내용</label><textarea class="form-textarea" id="postContent" placeholder="내용을 입력하세요. 서로를 존중하는 따뜻한 커뮤니티를 만들어요 😊"></textarea></div>
+      <div class="form-footer"><button class="btn-cancel" onclick="closeWrite()">취소</button><button class="btn-save" onclick="submitPost()">등록하기</button></div>
     </div>
   </div>
 </div>
 
+<div class="post-detail-overlay" id="pdOverlay" onclick="if(event.target===this)closePD()">
+  <div class="post-detail">
+    <div class="pd-header">
+      <div id="pd-cat"></div>
+      <div class="pd-title" id="pd-title"></div>
+      <div class="pd-meta"><span id="pd-author"></span><span id="pd-date"></span><span id="pd-views"></span></div>
+    </div>
+    <div class="pd-body" id="pd-body"></div>
+    <div class="pd-footer"><button class="pd-close" onclick="closePD()">닫기</button></div>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 
-<script>
-const catLabel = {
-  notice:   {text:'공지',   cls:'cat-notice'},
-  community:{text:'커뮤니티', cls:'cat-community'},
-  job:      {text:'취업정보', cls:'cat-job'},
-  qna:      {text:'Q&A',   cls:'cat-qna'}
-};
-
-let posts = [
-  {id:1, cat:'notice',    pin:true,  title:'2026년 상반기 인턴십 매칭 프로그램 신청 안내',         author:'관리자',    date:'2026.04.15', views:1243, preview:'2026년 상반기 인턴십 매칭 프로그램 신청이 시작되었습니다. 참여를 원하시는 분들은 아래 내용을 꼭 확인해주세요.'},
-  {id:2, cat:'notice',    pin:true,  title:'직무 교육 신규 과정 오픈 안내 (IT/마케팅/경영)',        author:'관리자',    date:'2026.04.10', views:987,  preview:'새로운 직무 교육 과정이 오픈되었습니다. IT, 마케팅, 경영 분야의 실무 중심 강의를 5개 언어로 제공합니다.'},
-  {id:3, cat:'notice',    pin:true,  title:'K-WorkBridge 서비스 이용약관 개정 안내',               author:'관리자',    date:'2026.04.01', views:654,  preview:'2026년 4월 1일부로 서비스 이용약관이 개정되었습니다. 주요 변경사항을 확인해주세요.'},
-  {id:4, cat:'community', pin:false, title:'서울 생활 적응 꿀팁 공유해요 — 중국에서 온 지 1년 됐어요!', author:'왕리화',   date:'2026.04.14', views:432,  preview:'안녕하세요! 중국에서 한국에 온 지 1년이 됐어요. 그동안 겪었던 어려움과 적응 팁을 공유하고 싶어요.'},
-  {id:5, cat:'job',       pin:false, title:'삼성전자 다문화 청년 채용 공고 공유합니다',              author:'김민준',    date:'2026.04.13', views:876,  preview:'삼성전자에서 다문화 가정 청년을 대상으로 하는 특별 채용 프로그램을 운영합니다. 지원 자격과 방법을 공유해요.'},
-  {id:6, cat:'qna',       pin:false, title:'한국어 능력 시험 (TOPIK) 준비 어떻게 하셨나요?',       author:'응우옌',    date:'2026.04.12', views:321,  preview:'TOPIK 시험을 준비 중인데요, 추천할 만한 교재나 학습법이 있으면 알려주세요!'},
-  {id:7, cat:'community', pin:false, title:'IT 직무 교육 수료 후기 — 정말 도움됐어요!',            author:'박성현',    date:'2026.04.11', views:567,  preview:'K-WorkBridge의 IT 직무 교육을 수료했어요. 프론트엔드 개발 기초부터 실무까지 정말 알차게 배웠습니다.'},
-  {id:8, cat:'job',       pin:false, title:'카카오 인턴십 후기 및 지원 팁 공유',                   author:'류시원',    date:'2026.04.10', views:745,  preview:'카카오 인턴십에 합격했어요! 준비 과정과 면접 팁을 공유할게요.'},
-  {id:9, cat:'qna',       pin:false, title:'비자 연장 관련 질문 있습니다',                         author:'다나카',    date:'2026.04.09', views:234,  preview:'D-2 비자로 재학 중인데 졸업 후 취업 비자로 변경하는 절차가 궁금합니다.'},
-  {id:10,cat:'community', pin:false, title:'한국어 스터디 그룹 모집합니다 (베트남어 사용자)',        author:'레반안',    date:'2026.04.08', views:198,  preview:'베트남어가 모국어이신 분들과 함께 한국어 스터디 그룹을 만들고 싶어요. 같이 공부해요!'},
-  {id:11,cat:'job',       pin:false, title:'네이버 웹툰 다국어 콘텐츠팀 채용 공고',                 author:'관리자',    date:'2026.04.07', views:612,  preview:'네이버 웹툰에서 중국어, 일본어, 베트남어 가능자를 채용합니다.'},
-  {id:12,cat:'community', pin:false, title:'일본에서 온 대학생입니다. 잘 부탁드려요!',              author:'야마다',    date:'2026.04.06', views:156,  preview:'안녕하세요! 일본에서 한국으로 유학 온 대학교 2학년생이에요. 잘 부탁드립니다!'},
-];
-
-let currentTab = 'all';
-let currentView = 'list';
-let currentPage = 1;
-const perPage = 8;
-
-function getFiltered() {
-  const q = document.getElementById('searchInput').value.toLowerCase();
-  return posts.filter(p => {
-    const tabOk = currentTab === 'all' || p.cat === currentTab;
-    const searchOk = !q || p.title.toLowerCase().includes(q) || p.author.toLowerCase().includes(q);
-    return tabOk && searchOk;
-  });
-}
-
-function renderList(data) {
-  const start = (currentPage - 1) * perPage;
-  const paged = data.slice(start, start + perPage);
-  const c = document.getElementById('listContainer');
-  c.innerHTML = '';
-  if (!paged.length) { c.innerHTML = '<div style="text-align:center;padding:60px;color:var(--gray-300)">게시글이 없습니다</div>'; return; }
-  paged.forEach((p, i) => {
-    const cat = catLabel[p.cat];
-    const num = p.pin ? '📌' : start + i + 1;
-    c.innerHTML += `
-    <div class="list-item ${p.pin?'pinned':''}" onclick="showToast('${p.title.replace(/'/g,"\\'")}')">
-      <div class="item-num ${p.pin?'pin':''}">${num}</div>
-      <div class="item-title-wrap">
-        <span class="item-cat ${cat.cls}">${cat.text}</span>
-        <span class="item-title">${p.title}</span>
-        ${i < 2 && !p.pin ? '<span class="item-new"></span>' : ''}
-      </div>
-      <div class="item-author">${p.author}</div>
-      <div class="item-date">${p.date}</div>
-      <div class="item-views">👁 ${p.views.toLocaleString()}</div>
-    </div>`;
-  });
-}
-
-function renderCards(data) {
-  const start = (currentPage - 1) * perPage;
-  const paged = data.slice(start, start + perPage);
-  const c = document.getElementById('cardContainer');
-  c.innerHTML = '';
-  if (!paged.length) { c.innerHTML = '<div style="text-align:center;padding:60px;color:var(--gray-300);grid-column:1/-1">게시글이 없습니다</div>'; return; }
-  paged.forEach(p => {
-    const cat = catLabel[p.cat];
-    c.innerHTML += `
-    <div class="board-card ${p.pin?'pinned':''}" onclick="showToast('${p.title.replace(/'/g,"\\'")}')">
-      <div class="card-top">
-        <span class="item-cat ${cat.cls}">${cat.text}</span>
-        ${p.pin ? '<span style="font-size:13px;color:var(--green-600)">📌 고정</span>' : ''}
-      </div>
-      <div class="card-title">${p.title}</div>
-      <div class="card-preview">${p.preview}</div>
-      <div class="card-bottom">
-        <div class="card-meta"><span>✍️ ${p.author}</span><span>${p.date}</span></div>
-        <div class="card-stats"><span>👁 ${p.views.toLocaleString()}</span></div>
-      </div>
-    </div>`;
-  });
-}
-
-function renderPagination(total) {
-  const pages = Math.ceil(total / perPage);
-  const el = document.getElementById('pagination');
-  el.innerHTML = '';
-  if (pages <= 1) return;
-  const prev = document.createElement('button');
-  prev.className = 'page-btn'; prev.textContent = '‹';
-  prev.onclick = () => { if(currentPage > 1){ currentPage--; render(); } };
-  el.appendChild(prev);
-  for (let i = 1; i <= pages; i++) {
-    const btn = document.createElement('button');
-    btn.className = 'page-btn' + (i === currentPage ? ' active' : '');
-    btn.textContent = i;
-    btn.onclick = () => { currentPage = i; render(); };
-    el.appendChild(btn);
-  }
-  const next = document.createElement('button');
-  next.className = 'page-btn'; next.textContent = '›';
-  next.onclick = () => { if(currentPage < pages){ currentPage++; render(); } };
-  el.appendChild(next);
-}
-
-function render() {
-  const data = getFiltered();
-  renderList(data);
-  renderCards(data);
-  renderPagination(data.length);
-}
-
-function switchTab(tab) {
-  currentTab = tab;
-  currentPage = 1;
-  document.querySelectorAll('.tab-btn').forEach((b, i) => {
-    const tabs = ['all','notice','community','job','qna'];
-    b.classList.toggle('active', tabs[i] === tab);
-  });
-  render();
-}
-
-function setView(view) {
-  currentView = view;
-  document.querySelectorAll('.view-btn').forEach((b, i) => b.classList.toggle('active', (i===0&&view==='list')||(i===1&&view==='card')));
-  document.getElementById('listView').style.display = view === 'list' ? 'block' : 'none';
-  document.getElementById('cardView').style.display = view === 'card' ? 'block' : 'none';
-}
-
-function filterPosts() { currentPage = 1; render(); }
-
-function sortPosts(val) {
-  if (val === 'latest') posts.sort((a,b) => b.id - a.id);
-  else if (val === 'views') posts.sort((a,b) => b.views - a.views);
-  else if (val === 'popular') posts.sort((a,b) => b.views - a.views);
-  render();
-}
-
-function openModal() {
-  document.getElementById('modalOverlay').classList.add('open');
-}
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  document.getElementById('postTitle').value = '';
-  document.getElementById('postContent').value = '';
-  document.getElementById('postTag').value = '';
-}
-function closeModalOutside(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
-
-function submitPost() {
-  const title = document.getElementById('postTitle').value.trim();
-  const content = document.getElementById('postContent').value.trim();
-  const cat = document.getElementById('postCategory').value;
-  if (!title) { showToast('제목을 입력해주세요!'); return; }
-  if (!content) { showToast('내용을 입력해주세요!'); return; }
-  const newPost = {
-    id: posts.length + 1,
-    cat, pin: false,
-    title, author: '나',
-    date: new Date().toLocaleDateString('ko-KR').replace(/\. /g,'.').replace('.',''),
-    views: 1,
-    preview: content.substring(0, 80)
-  };
-  posts.unshift(newPost);
-  closeModal();
-  currentTab = 'all';
-  currentPage = 1;
-  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===0));
-  render();
-  showToast('게시글이 등록되었습니다! 🎉');
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-function searchTag(tag) {
-  document.getElementById('searchInput').value = tag.replace('#','');
-  currentTab = 'all';
-  currentPage = 1;
-  render();
-  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===0));
-}
-
-render();
-</script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
 <script src="lang.js"></script>
+<script>
+const catLabel={notice:{text:'공지',cls:'cat-notice'},community:{text:'커뮤니티',cls:'cat-community'},job:{text:'취업정보',cls:'cat-job'},qna:{text:'Q&A',cls:'cat-qna'}};
+let allPosts=[],filteredPosts=[],currentTab='all',currentView='list',currentPage=1,currentUser=null;
+const perPage=10;
+
+auth.onAuthStateChanged(user=>{
+  currentUser=user;
+  const loginBtn=document.getElementById('nav-login-btn');
+  const userInfo=document.getElementById('nav-user-info');
+  if(user){
+    loginBtn.style.display='none';
+    userInfo.style.display='flex';
+    document.getElementById('nav-user-name').textContent=user.displayName||user.email.split('@')[0];
+    const av=document.getElementById('nav-avatar');
+    if(user.photoURL){av.innerHTML=`<img src="${user.photoURL}">`;}
+    else{av.textContent=(user.displayName||user.email)[0].toUpperCase();}
+  }else{
+    loginBtn.style.display='inline-block';
+    userInfo.style.display='none';
+  }
+});
+
+async function loadPosts(){
+  document.getElementById('listContainer').innerHTML='<div class="loading-posts">게시글을 불러오는 중...</div>';
+  try{
+    const snap=await db.collection('posts').orderBy('createdAt','desc').get();
+    allPosts=snap.docs.map(doc=>({id:doc.id,...doc.data()}));
+    updateBadges();filterAndRender();
+  }catch(e){document.getElementById('listContainer').innerHTML='<div class="loading-posts">불러오기 실패 — '+e.message+'</div>';}
+}
+
+function updateBadges(){
+  document.getElementById('badge-all').textContent=allPosts.length;
+  ['notice','community','job','qna'].forEach(c=>{document.getElementById('badge-'+c).textContent=allPosts.filter(p=>p.category===c).length;});
+}
+
+function filterAndRender(){
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  filteredPosts=allPosts.filter(p=>(currentTab==='all'||p.category===currentTab)&&(!q||p.title?.toLowerCase().includes(q)||p.author?.toLowerCase().includes(q)||p.content?.toLowerCase().includes(q)));
+  currentPage=1;render();
+}
+
+function render(){
+  const pinned=filteredPosts.filter(p=>p.pinned);
+  const normal=filteredPosts.filter(p=>!p.pinned);
+  const start=(currentPage-1)*perPage;
+  const paged=[...pinned,...normal].slice(start,start+perPage);
+  if(currentView==='list')renderList(paged); else renderCards(paged);
+  renderPagination();
+}
+
+function fmtDate(ts){if(!ts)return '방금 전';try{return ts.toDate().toLocaleDateString('ko-KR');}catch{return '방금 전';}}
+
+function renderList(paged){
+  const c=document.getElementById('listContainer');
+  if(!paged.length){c.innerHTML='<div style="text-align:center;padding:60px;color:var(--gray-300)">게시글이 없습니다</div>';return;}
+  c.innerHTML='';
+  paged.forEach((p,i)=>{
+    const cat=catLabel[p.category]||catLabel.community;
+    const num=p.pinned?'📌':(currentPage-1)*perPage+i+1;
+    const div=document.createElement('div');
+    div.className='list-item'+(p.pinned?' pinned':'');
+    div.innerHTML=`<div class="item-num">${num}</div><div class="item-title-wrap"><span class="item-cat ${cat.cls}">${cat.text}</span><span class="item-title">${p.title||''}</span></div><div class="item-author">${p.author||''}</div><div class="item-date">${fmtDate(p.createdAt)}</div><div class="item-views">👁 ${(p.views||0).toLocaleString()}</div>`;
+    div.onclick=()=>openPD(p);c.appendChild(div);
+  });
+}
+
+function renderCards(paged){
+  const c=document.getElementById('cardContainer');
+  if(!paged.length){c.innerHTML='<div style="text-align:center;padding:60px;color:var(--gray-300);grid-column:1/-1">게시글이 없습니다</div>';return;}
+  c.innerHTML='';
+  paged.forEach(p=>{
+    const cat=catLabel[p.category]||catLabel.community;
+    const div=document.createElement('div');
+    div.className='board-card'+(p.pinned?' pinned':'');
+    div.innerHTML=`<div class="card-top"><span class="item-cat ${cat.cls}">${cat.text}</span>${p.pinned?'<span style="font-size:13px;color:var(--green-600)">📌</span>':''}</div><div class="card-title-t">${p.title||''}</div><div class="card-preview">${p.content||''}</div><div class="card-bottom"><span>✍️ ${p.author||''}</span><span>👁 ${(p.views||0).toLocaleString()}</span></div>`;
+    div.onclick=()=>openPD(p);c.appendChild(div);
+  });
+}
+
+function renderPagination(){
+  const pages=Math.ceil(filteredPosts.length/perPage);
+  const el=document.getElementById('pagination');el.innerHTML='';
+  if(pages<=1)return;
+  const mk=(txt,pg,active)=>{const b=document.createElement('button');b.className='page-btn'+(active?' active':'');b.textContent=txt;b.onclick=()=>{currentPage=pg;render();};el.appendChild(b);};
+  mk('‹',Math.max(1,currentPage-1),false);
+  for(let i=1;i<=pages;i++)mk(i,i,i===currentPage);
+  mk('›',Math.min(pages,currentPage+1),false);
+}
+
+async function openPD(p){
+  const cat=catLabel[p.category]||catLabel.community;
+  document.getElementById('pd-cat').innerHTML=`<span class="item-cat ${cat.cls}">${cat.text}</span>`;
+  document.getElementById('pd-title').textContent=p.title||'';
+  document.getElementById('pd-author').textContent='✍️ '+(p.author||'');
+  document.getElementById('pd-date').textContent='📅 '+fmtDate(p.createdAt);
+  document.getElementById('pd-views').textContent='👁 '+(p.views||0).toLocaleString();
+  document.getElementById('pd-body').textContent=p.content||'';
+  document.getElementById('pdOverlay').classList.add('open');
+  if(p.id){try{await db.collection('posts').doc(p.id).update({views:firebase.firestore.FieldValue.increment(1)});}catch(e){}}
+}
+function closePD(){document.getElementById('pdOverlay').classList.remove('open');}
+
+function switchTab(tab){
+  currentTab=tab;currentPage=1;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',['all','notice','community','job','qna'][i]===tab));
+  filterAndRender();
+}
+function setView(view){
+  currentView=view;
+  document.querySelectorAll('.view-btn').forEach((b,i)=>b.classList.toggle('active',(i===0&&view==='list')||(i===1&&view==='card')));
+  document.getElementById('listView').style.display=view==='list'?'block':'none';
+  document.getElementById('cardView').style.display=view==='card'?'block':'none';
+  render();
+}
+function filterPosts(){filterAndRender();}
+function sortPosts(val){
+  if(val==='views')allPosts.sort((a,b)=>(b.views||0)-(a.views||0));
+  else allPosts.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+  filterAndRender();
+}
+function searchTag(tag){document.getElementById('searchInput').value=tag;filterAndRender();}
+
+function openWrite(){
+  if(!currentUser){showToast('로그인 후 글을 쓸 수 있어요! 😊');window.location.href='auth.html?redirect=board.html';return;}
+  document.getElementById('writeModal').classList.add('open');
+}
+function closeWrite(){
+  document.getElementById('writeModal').classList.remove('open');
+  document.getElementById('postTitle').value='';document.getElementById('postContent').value='';
+}
+async function submitPost(){
+  if(!currentUser){showToast('로그인이 필요해요!');return;}
+  const title=document.getElementById('postTitle').value.trim();
+  const content=document.getElementById('postContent').value.trim();
+  const category=document.getElementById('postCategory').value;
+  if(!title){showToast('제목을 입력해주세요!');return;}
+  if(!content){showToast('내용을 입력해주세요!');return;}
+  try{
+    await db.collection('posts').add({title,content,category,author:currentUser.displayName||currentUser.email.split('@')[0],authorId:currentUser.uid,views:0,pinned:false,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+    closeWrite();showToast('게시글이 등록되었습니다! 🎉');loadPosts();
+  }catch(e){showToast('오류: '+e.message);}
+}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+loadPosts();
+</script>
 </body>
 </html>
