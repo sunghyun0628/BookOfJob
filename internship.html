@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K-WorkBridge — 인턴십 매칭</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-50:#f0f7e8;--green-100:#e4f0d5;--green-200:#c8e3aa;
+  --green-400:#8bbe5a;--green-600:#5a8f2e;--green-800:#2d5010;
+  --gray-50:#f8f9f7;--gray-100:#f0f2ee;--gray-300:#c8cdc3;
+  --gray-500:#7a8270;--gray-700:#3d4438;--gray-900:#1a1f16;
+  --white:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--gray-50);color:var(--gray-900);font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.7}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--green-100);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-icon{width:32px;height:32px;background:var(--green-600);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:500}
+.nav-logo-text{font-size:17px;font-weight:500;color:var(--gray-900)}
+.nav-logo-text span{color:var(--green-600)}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-link{padding:6px 14px;border-radius:8px;font-size:14px;color:var(--gray-500);text-decoration:none;transition:all 0.2s}
+.nav-link:hover,.nav-link.active{background:var(--green-100);color:var(--green-800)}
+.nav-cta{padding:9px 22px;background:var(--green-600);color:white;border:none;border-radius:8px;font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;text-decoration:none}
+
+.notice-banner{background:var(--green-800);color:white;padding:14px 48px}
+.notice-banner-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;font-size:14px}
+.notice-badge{background:var(--green-400);color:var(--green-800);padding:2px 10px;border-radius:20px;font-size:12px;font-weight:500;white-space:nowrap}
+.notice-link{color:var(--green-200);text-decoration:underline;cursor:pointer;white-space:nowrap;font-size:13px}
+
+.page-header{background:linear-gradient(135deg,var(--white) 0%,var(--green-50) 100%);padding:100px 48px 48px;border-bottom:1px solid var(--green-100)}
+.page-header-inner{max-width:1200px;margin:0 auto}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500);margin-bottom:16px}
+.breadcrumb a{color:var(--green-600);text-decoration:none}
+.page-title{font-family:'DM Serif Display',serif;font-size:36px;font-weight:400;color:var(--gray-900);margin-bottom:8px}
+.page-desc{font-size:15px;color:var(--gray-500);margin-bottom:28px}
+.header-stats{display:flex;gap:32px}
+.hstat-num{font-family:'DM Serif Display',serif;font-size:28px;color:var(--green-600);display:block}
+.hstat-label{font-size:12px;color:var(--gray-500)}
+
+.main-wrap{max-width:1200px;margin:0 auto;padding:40px 48px}
+
+/* AI 매칭 배너 */
+.ai-banner{background:linear-gradient(135deg,#1e3a5f,#0f2238);border-radius:16px;padding:32px 36px;margin-bottom:40px;color:white;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.ai-banner-label{font-size:12px;letter-spacing:0.1em;color:#60a5fa;margin-bottom:8px;text-transform:uppercase}
+.ai-banner-title{font-family:'DM Serif Display',serif;font-size:24px;margin-bottom:10px}
+.ai-banner-desc{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.7;max-width:500px}
+.ai-banner-btn{padding:14px 32px;background:#3b82f6;color:white;border:none;border-radius:10px;font-size:15px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;font-weight:400;white-space:nowrap;transition:background 0.2s}
+.ai-banner-btn:hover{background:#2563eb}
+
+/* 필터 */
+.filter-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:28px;background:white;padding:16px 20px;border-radius:14px;border:1px solid var(--green-100)}
+.filter-label{font-size:13px;color:var(--gray-500);white-space:nowrap}
+.filter-tabs{display:flex;gap:6px;flex-wrap:wrap}
+.filter-tab{padding:6px 14px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:13px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s;white-space:nowrap}
+.filter-tab.active,.filter-tab:hover{background:var(--green-600);color:white;border-color:var(--green-600)}
+
+/* 채용 공고 그리드 */
+.jobs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:48px}
+.job-card{background:white;border:1px solid var(--green-100);border-radius:16px;padding:24px;cursor:pointer;transition:all 0.3s;position:relative}
+.job-card:hover{border-color:var(--green-400);box-shadow:0 8px 32px rgba(90,143,46,0.1);transform:translateY(-2px)}
+.job-card.featured{border-color:var(--green-400);background:var(--green-50)}
+.job-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
+.job-company{display:flex;align-items:center;gap:12px}
+.company-logo{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;background:white;border:1px solid var(--green-100)}
+.company-name{font-size:15px;font-weight:500;color:var(--gray-900)}
+.company-type{font-size:12px;color:var(--gray-500)}
+.job-badges{display:flex;gap:6px;flex-wrap:wrap}
+.jbadge{padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500}
+.jb-new{background:#dbeafe;color:#1e40af}
+.jb-gov{background:var(--green-100);color:var(--green-800)}
+.jb-hot{background:#fee2e2;color:#991b1b}
+.jb-hire{background:#d1fae5;color:#065f46}
+.job-title{font-size:16px;font-weight:500;color:var(--gray-900);margin-bottom:8px;line-height:1.5}
+.job-desc{font-size:13px;color:var(--gray-500);line-height:1.7;margin-bottom:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.job-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.jtag{padding:3px 10px;border-radius:4px;font-size:12px;background:var(--gray-100);color:var(--gray-700)}
+.job-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--green-100);padding-top:14px}
+.job-info{display:flex;gap:16px;font-size:12px;color:var(--gray-500)}
+.job-info-item{display:flex;align-items:center;gap:4px}
+.job-deadline{font-size:12px;color:var(--gray-500)}
+.job-apply{padding:8px 20px;background:var(--green-600);color:white;border:none;border-radius:8px;font-size:13px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;transition:background 0.2s}
+.job-apply:hover{background:var(--green-800)}
+.deadline-urgent{color:#ef4444;font-weight:500}
+
+/* 합격 후기 */
+.success-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
+.success-card{background:white;border:1px solid var(--green-100);border-radius:14px;padding:24px}
+.success-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.success-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:500}
+.success-name{font-size:14px;font-weight:500;color:var(--gray-900)}
+.success-company{font-size:12px;color:var(--green-600);font-weight:500}
+.success-text{font-size:13px;color:var(--gray-700);line-height:1.8}
+
+/* 지원 절차 */
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:48px;position:relative}
+.process-steps::before{content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--green-200),var(--green-400),var(--green-200));z-index:0}
+.process-step{text-align:center;padding:0 16px;position:relative;z-index:1}
+.ps-circle{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:22px;border:3px solid white;box-shadow:0 0 0 2px var(--green-200)}
+.ps-num{font-size:12px;color:var(--green-600);font-weight:500;margin-bottom:6px;letter-spacing:0.05em}
+.ps-title{font-size:14px;font-weight:500;color:var(--gray-900);margin-bottom:6px}
+.ps-desc{font-size:12px;color:var(--gray-500);line-height:1.6}
+
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px}
+.section-title{font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;color:var(--gray-900)}
+.section-more{font-size:13px;color:var(--green-600);cursor:pointer}
+
+.toast{position:fixed;bottom:32px;right:32px;background:var(--gray-900);color:white;padding:14px 22px;border-radius:12px;font-size:14px;z-index:1000;opacity:0;transform:translateY(10px);transition:all 0.3s;pointer-events:none}
+
+@media(max-width:900px){
+  nav{padding:0 20px}
+  .page-header{padding:90px 20px 32px}
+  .notice-banner{padding:12px 20px}
+  .main-wrap{padding:24px 20px}
+  .jobs-grid{grid-template-columns:1fr}
+  .success-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:repeat(2,1fr);gap:20px}
+  .process-steps::before{display:none}
+  .ai-banner{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">K</div>
+    <div class="nav-logo-text">K-Work<span>Bridge</span></div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">홈</a>
+    <a href="board.html" class="nav-link">커뮤니티</a>
+    <a href="education.html" class="nav-link">직무교육</a>
+    <a href="internship.html" class="nav-link active">인턴십</a>
+  </div>
+  <a href="#" class="nav-cta">로그인</a>
+</nav>
+
+<div class="notice-banner">
+  <div class="notice-banner-inner">
+    <span class="notice-badge">🔥 마감임박</span>
+    <span style="flex:1">2026년 제1기 고용노동부 「청년일경험 지원사업(인턴형)」 — 참여기업 모집 마감 D-3</span>
+    <span class="notice-link">신청하기 →</span>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="index.html">홈</a>
+      <span>›</span>
+      <span>인턴십 매칭</span>
+    </div>
+    <div class="page-title">인턴십 매칭</div>
+    <div class="page-desc">AI가 나의 역량과 관심사를 분석해 최적의 인턴십을 추천합니다. 다양성을 존중하는 기업들과 연결되세요.</div>
+    <div class="header-stats" style="display:flex;gap:32px">
+      <div>
+        <span class="hstat-num">124개</span>
+        <span class="hstat-label">진행 중인 공고</span>
+      </div>
+      <div>
+        <span class="hstat-num">38개</span>
+        <span class="hstat-label">파트너 기업</span>
+      </div>
+      <div>
+        <span class="hstat-num">89%</span>
+        <span class="hstat-label">취업 연계율</span>
+      </div>
+      <div>
+        <span class="hstat-num">월 200만원</span>
+        <span class="hstat-label">평균 인턴 급여</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-wrap">
+
+  <!-- AI 매칭 배너 -->
+  <div class="ai-banner">
+    <div>
+      <div class="ai-banner-label">✦ AI 매칭 시스템</div>
+      <div class="ai-banner-title">나에게 딱 맞는 인턴십을 AI가 찾아드립니다</div>
+      <div class="ai-banner-desc">직무 교육 수료 이력, 관심 분야, 언어 능력, 거주 지역을 분석해 최적의 인턴십 공고를 매칭합니다. 직무교육 과정을 먼저 수료하면 매칭 정확도가 높아집니다.</div>
+    </div>
+    <button class="ai-banner-btn" onclick="showToast('AI 매칭을 시작합니다! 잠시 후 결과를 보내드립니다 🤖')">AI 매칭 시작하기</button>
+  </div>
+
+  <!-- 필터 -->
+  <div class="filter-row">
+    <span class="filter-label">직무</span>
+    <div class="filter-tabs" id="jobTabs">
+      <button class="filter-tab active" onclick="filterJobs(this,'all')">전체</button>
+      <button class="filter-tab" onclick="filterJobs(this,'it')">💻 IT·개발</button>
+      <button class="filter-tab" onclick="filterJobs(this,'mkt')">📣 마케팅</button>
+      <button class="filter-tab" onclick="filterJobs(this,'biz')">💼 경영·사무</button>
+      <button class="filter-tab" onclick="filterJobs(this,'data')">📊 데이터</button>
+      <button class="filter-tab" onclick="filterJobs(this,'design')">🎨 디자인</button>
+    </div>
+  </div>
+
+  <!-- 인턴십 공고 -->
+  <div class="section-header">
+    <div class="section-title">📋 인턴십 공고</div>
+    <span class="section-more">124개 공고</span>
+  </div>
+  <div class="jobs-grid" id="jobsGrid">
+
+    <div class="job-card featured" data-cat="it">
+      <div class="job-top">
+        <div class="job-company">
+          <div class="company-logo">🏢</div>
+          <div>
+            <div class="company-name">카카오</div>
+            <div class="company-type">IT · 판교</div>
+          </div>
+        </div>
+        <div class="job-badges">
+          <span class="jbadge jb-hot">🔥 마감임박</span>
+          <span class="jbadge jb-hire">정규직 전환</span>
+        </div>
+      </div>
+      <div class="job-title">카카오 다국어 콘텐츠 & 글로벌 서비스 인턴 (2026 상반기)</div>
+      <div class="job-desc">카카오의 글로벌 서비스 팀에서 다국어 콘텐츠 기획 및 번역, 현지화 업무를 담당합니다. 중국어·일본어·베트남어 가능자 우대.</div>
+      <div class="job-tags">
+        <span class="jtag">중국어/일본어/베트남어 우대</span>
+        <span class="jtag">콘텐츠 기획</span>
+        <span class="jtag">글로벌 서비스</span>
+      </div>
+      <div class="job-footer">
+        <div class="job-info">
+          <span class="job-info-item">💰 월 230만원</span>
+          <span class="job-info-item">📍 판교</span>
+          <span class="job-info-item">⏱️ 6개월</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="job-deadline deadline-urgent">D-3 마감</span>
+          <button class="job-apply" onclick="showToast('카카오 인턴십에 지원했습니다! 🎉')">지원하기</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card" data-cat="mkt">
+      <div class="job-top">
+        <div class="job-company">
+          <div class="company-logo">🌐</div>
+          <div>
+            <div class="company-name">네이버</div>
+            <div class="company-type">IT · 성남</div>
+          </div>
+        </div>
+        <div class="job-badges">
+          <span class="jbadge jb-new">✨ 신규</span>
+          <span class="jbadge jb-hire">정규직 전환</span>
+        </div>
+      </div>
+      <div class="job-title">네이버 웹툰 글로벌 마케팅 인턴 — 다국어 SNS 운영</div>
+      <div class="job-desc">네이버 웹툰의 글로벌 SNS 채널 운영 및 콘텐츠 현지화 업무. 중국어·일본어·베트남어 가능자를 적극 채용합니다.</div>
+      <div class="job-tags">
+        <span class="jtag">SNS 마케팅</span>
+        <span class="jtag">콘텐츠 현지화</span>
+        <span class="jtag">다국어 필수</span>
+      </div>
+      <div class="job-footer">
+        <div class="job-info">
+          <span class="job-info-item">💰 월 220만원</span>
+          <span class="job-info-item">📍 성남</span>
+          <span class="job-info-item">⏱️ 6개월</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="job-deadline">D-14</span>
+          <button class="job-apply" onclick="showToast('네이버 인턴십에 지원했습니다! 🎉')">지원하기</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card" data-cat="biz">
+      <div class="job-top">
+        <div class="job-company">
+          <div class="company-logo">🏛️</div>
+          <div>
+            <div class="company-name">고용노동부 (정부)</div>
+            <div class="company-type">공공기관 · 서울</div>
+          </div>
+        </div>
+        <div class="job-badges">
+          <span class="jbadge jb-gov">🏛️ 정부지원</span>
+        </div>
+      </div>
+      <div class="job-title">2026년 제1기 행정안전부 청년인턴 — 다문화정책팀</div>
+      <div class="job-desc">행정안전부 다문화정책팀에서 다문화가족 지원 정책 보조 업무를 담당합니다. 다문화 가정 청년 우선 선발.</div>
+      <div class="job-tags">
+        <span class="jtag">다문화 청년 우선</span>
+        <span class="jtag">정책 보조</span>
+        <span class="jtag">공공기관 경력</span>
+      </div>
+      <div class="job-footer">
+        <div class="job-info">
+          <span class="job-info-item">💰 월 190만원</span>
+          <span class="job-info-item">📍 서울 광화문</span>
+          <span class="job-info-item">⏱️ 5개월</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="job-deadline">D-7</span>
+          <button class="job-apply" onclick="showToast('행정안전부 인턴십에 지원했습니다! 🎉')">지원하기</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card" data-cat="data">
+      <div class="job-top">
+        <div class="job-company">
+          <div class="company-logo">📊</div>
+          <div>
+            <div class="company-name">삼성SDS</div>
+            <div class="company-type">IT · 강동</div>
+          </div>
+        </div>
+        <div class="job-badges">
+          <span class="jbadge jb-hire">정규직 전환</span>
+        </div>
+      </div>
+      <div class="job-title">삼성SDS 데이터 분석 인턴 — 글로벌 물류 데이터팀</div>
+      <div class="job-desc">글로벌 물류 데이터 분석 및 시각화 업무. 다국어 가능자 우대, K-WorkBridge 직무교육 수료자 서류 면제 혜택 제공.</div>
+      <div class="job-tags">
+        <span class="jtag">데이터 분석</span>
+        <span class="jtag">Python/SQL</span>
+        <span class="jtag">교육수료자 서류면제</span>
+      </div>
+      <div class="job-footer">
+        <div class="job-info">
+          <span class="job-info-item">💰 월 250만원</span>
+          <span class="job-info-item">📍 강동구</span>
+          <span class="job-info-item">⏱️ 6개월</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="job-deadline">D-21</span>
+          <button class="job-apply" onclick="showToast('삼성SDS 인턴십에 지원했습니다! 🎉')">지원하기</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card" data-cat="it">
+      <div class="job-top">
+        <div class="job-company">
+          <div class="company-logo">🛍️</div>
+          <div>
+            <div class="company-name">쿠팡</div>
+            <div class="company-type">이커머스 · 서울</div>
+          </div>
+        </div>
+        <div class="job-badges">
+          <span class="jbadge jb-new">✨ 신규</span>
+        </div>
+      </div>
+      <div class="job-title">쿠팡 글로벌 셀러 서포트 인턴 — 중국어/베트남어 CS</div>
+      <div class="job-desc">쿠팡 글로벌 셀러 지원팀에서 중국어·베트남어 고객 응대 및 셀러 지원 업무를 담당합니다. 이중언어 필수.</div>
+      <div class="job-tags">
+        <span class="jtag">중국어 또는 베트남어 필수</span>
+        <span class="jtag">CS 업무</span>
+        <span class="jtag">이커머스</span>
+      </div>
+      <div class="job-footer">
+        <div class="job-info">
+          <span class="job-info-item">💰 월 210만원</span>
+          <span class="job-info-item">📍 서울 강남</span>
+          <span class="job-info-item">⏱️ 3개월</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="job-deadline">D-28</span>
+          <button class="job-apply" onclick="showToast('쿠팡 인턴십에 지원했습니다! 🎉')">지원하기</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="job-card" data-cat="design">
+      <div class="job-top">
+        <div class="job-company">
+          <div class="company-logo">✏️</div>
+          <div>
+            <div class="company-name">라인플러스</div>
+            <div class="company-type">IT · 성남</div>
+          </div>
+        </div>
+        <div class="job-badges">
+          <span class="jbadge jb-hire">정규직 전환</span>
+        </div>
+      </div>
+      <div class="job-title">라인플러스 UI/UX 디자인 인턴 — 글로벌 앱 디자인</div>
+      <div class="job-desc">라인의 글로벌 서비스 UI/UX 디자인 업무. 일본어 가능자 우대. Figma 활용 역량 필수, K-WorkBridge 디자인 과정 수료자 우대.</div>
+      <div class="job-tags">
+        <span class="jtag">Figma 필수</span>
+        <span class="jtag">일본어 우대</span>
+        <span class="jtag">UI/UX</span>
+      </div>
+      <div class="job-footer">
+        <div class="job-info">
+          <span class="job-info-item">💰 월 240만원</span>
+          <span class="job-info-item">📍 성남 분당</span>
+          <span class="job-info-item">⏱️ 6개월</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="job-deadline">D-30</span>
+          <button class="job-apply" onclick="showToast('라인플러스 인턴십에 지원했습니다! 🎉')">지원하기</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 지원 절차 -->
+  <div class="section-header">
+    <div class="section-title">📌 지원 절차</div>
+  </div>
+  <div class="process-steps" style="margin-bottom:48px">
+    <div class="process-step">
+      <div class="ps-circle" style="background:#dbeafe">📝</div>
+      <div class="ps-num">STEP 01</div>
+      <div class="ps-title">프로필 완성</div>
+      <div class="ps-desc">관심 직무, 언어 능력, 교육 수료 이력 등 프로필을 작성합니다</div>
+    </div>
+    <div class="process-step">
+      <div class="ps-circle" style="background:#fef3c7">🤖</div>
+      <div class="ps-num">STEP 02</div>
+      <div class="ps-title">AI 매칭</div>
+      <div class="ps-desc">AI가 나의 역량에 맞는 인턴십 공고를 자동으로 추천합니다</div>
+    </div>
+    <div class="process-step">
+      <div class="ps-circle" style="background:var(--green-100)">📨</div>
+      <div class="ps-num">STEP 03</div>
+      <div class="ps-title">간편 지원</div>
+      <div class="ps-desc">원클릭으로 지원서를 제출하고 기업의 연락을 기다립니다</div>
+    </div>
+    <div class="process-step">
+      <div class="ps-circle" style="background:#d1fae5">🎉</div>
+      <div class="ps-num">STEP 04</div>
+      <div class="ps-title">합격 & 시작</div>
+      <div class="ps-desc">면접 준비부터 합격 후 입사까지 K-WorkBridge가 함께합니다</div>
+    </div>
+  </div>
+
+  <!-- 합격 후기 -->
+  <div class="section-header">
+    <div class="section-title">🏆 합격 후기</div>
+  </div>
+  <div class="success-grid">
+    <div class="success-card">
+      <div class="success-header">
+        <div class="success-avatar" style="background:#dbeafe;color:#1e40af">왕</div>
+        <div>
+          <div class="success-name">왕리화 — 카카오 인턴십 합격</div>
+          <div class="success-company">글로벌 콘텐츠팀 · 2026년 1월 입사</div>
+        </div>
+      </div>
+      <div class="success-text">"K-WorkBridge의 AI 매칭 덕분에 제 중국어 능력을 살릴 수 있는 카카오 포지션을 찾을 수 있었어요. 직무교육에서 배운 마케팅 지식이 면접에서 정말 큰 도움이 됐습니다!"</div>
+    </div>
+    <div class="success-card">
+      <div class="success-header">
+        <div class="success-avatar" style="background:#fef3c7;color:#92400e">야</div>
+        <div>
+          <div class="success-name">야마다 켄지 — 라인플러스 합격</div>
+          <div class="success-company">UI/UX 디자인팀 · 2026년 2월 입사</div>
+        </div>
+      </div>
+      <div class="success-text">"Figma 과정을 수료하고 라인플러스에 지원했는데 교육수료자 우대 혜택으로 서류를 통과했어요. 일본어와 디자인 두 가지 강점을 동시에 살릴 수 있어서 정말 좋았습니다."</div>
+    </div>
+    <div class="success-card">
+      <div class="success-header">
+        <div class="success-avatar" style="background:#d1fae5;color:#065f46">응</div>
+        <div>
+          <div class="success-name">응우옌 티 란 — 네이버 합격</div>
+          <div class="success-company">글로벌 마케팅팀 · 2026년 3월 입사</div>
+        </div>
+      </div>
+      <div class="success-text">"베트남어를 할 수 있다는 게 이렇게 큰 강점이 될 줄 몰랐어요. 커뮤니티에서 먼저 정보를 얻고, 직무교육으로 준비하고, AI 매칭으로 딱 맞는 공고를 찾았습니다. K-WorkBridge 없었으면 불가능했을 것 같아요!"</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function filterJobs(btn, cat) {
+  document.querySelectorAll('#jobTabs .filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.job-card').forEach(c => {
+    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'block' : 'none';
+  });
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.opacity = '1';
+  t.style.transform = 'translateY(0)';
+  setTimeout(() => { t.style.opacity='0'; t.style.transform='translateY(10px)'; }, 2500);
+}
+</script>
+<script src="lang.js"></script>
+</body>
+</html>

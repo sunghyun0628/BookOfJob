@@ -173,7 +173,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,
     <a href="#" class="nav-link">직무 교육</a>
     <a href="#" class="nav-link">인턴십</a>
   </div>
-  <a href="#" class="nav-cta">로그인</a>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="lang-switcher" style="display:flex;gap:4px">
+      <button class="lang-btn" data-lang="ko" onclick="setLang('ko')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">한</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">EN</button>
+      <button class="lang-btn" data-lang="zh" onclick="setLang('zh')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">中</button>
+      <button class="lang-btn" data-lang="ja" onclick="setLang('ja')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">日</button>
+      <button class="lang-btn" data-lang="vi" onclick="setLang('vi')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">VI</button>
+    </div>
+    <a href="#" class="nav-cta" data-t="nav_login">로그인</a>
+  </div>
 </nav>
 
 <div class="page-header">
@@ -183,27 +192,27 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,
       <span>›</span>
       <span>커뮤니티</span>
     </div>
-    <div class="page-title">커뮤니티</div>
-    <div class="page-desc">다문화 청년들이 함께 소통하고 정보를 나누는 공간입니다</div>
+    <div class="page-title" data-t="board_title">커뮤니티</div>
+    <div class="page-desc" data-t="board_desc">다문화 청년들이 함께 소통하고 정보를 나누는 공간입니다</div>
   </div>
 </div>
 
 <div class="board-tabs">
   <div class="board-tabs-inner">
     <button class="tab-btn active" onclick="switchTab('all')">
-      전체 <span class="tab-badge" style="background:var(--green-100);color:var(--green-800)" id="badge-all">48</span>
+      <span data-t="tab_all">전체</span> <span class="tab-badge" style="background:var(--green-100);color:var(--green-800)" id="badge-all">48</span>
     </button>
     <button class="tab-btn" onclick="switchTab('notice')">
-      📢 공지사항 <span class="tab-badge" style="background:var(--green-100);color:var(--green-800)" id="badge-notice">6</span>
+      <span data-t="tab_notice">📢 공지사항</span> <span class="tab-badge" style="background:var(--green-100);color:var(--green-800)" id="badge-notice">6</span>
     </button>
     <button class="tab-btn" onclick="switchTab('community')">
-      🤝 커뮤니티 <span class="tab-badge" style="background:#eff6ff;color:#1d4ed8" id="badge-community">24</span>
+      <span data-t="tab_community">🤝 커뮤니티</span> <span class="tab-badge" style="background:#eff6ff;color:#1d4ed8" id="badge-community">24</span>
     </button>
     <button class="tab-btn" onclick="switchTab('job')">
-      💼 취업정보 <span class="tab-badge" style="background:#fffbeb;color:#92400e" id="badge-job">12</span>
+      <span data-t="tab_job">💼 취업정보</span> <span class="tab-badge" style="background:#fffbeb;color:#92400e" id="badge-job">12</span>
     </button>
     <button class="tab-btn" onclick="switchTab('qna')">
-      ❓ Q&A <span class="tab-badge" style="background:#f5f3ff;color:#5b21b6" id="badge-qna">6</span>
+      <span data-t="tab_qna">❓ Q&A</span> <span class="tab-badge" style="background:#f5f3ff;color:#5b21b6" id="badge-qna">6</span>
     </button>
   </div>
 </div>
@@ -213,7 +222,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,
     <div class="board-controls">
       <div class="search-box">
         <span class="search-icon">🔍</span>
-        <input type="text" placeholder="검색어를 입력하세요" id="searchInput" oninput="filterPosts()">
+        <input type="text" placeholder="검색어를 입력하세요" data-t="search_placeholder" id="searchInput" oninput="filterPosts()">
       </div>
       <div class="controls-right">
         <div class="view-toggle">
@@ -221,22 +230,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,
           <button class="view-btn" onclick="setView('card')" title="카드형">⊞</button>
         </div>
         <select class="sort-select" onchange="sortPosts(this.value)">
-          <option value="latest">최신순</option>
-          <option value="views">조회순</option>
-          <option value="popular">인기순</option>
+          <option value="latest" data-t="sort_latest">최신순</option>
+          <option value="views" data-t="sort_views">조회순</option>
+          <option value="popular" data-t="sort_popular">인기순</option>
         </select>
-        <button class="write-btn" onclick="openModal()">✏️ 글쓰기</button>
+        <button class="write-btn" onclick="openModal()" data-t="new_post">✏️ 글쓰기</button>
       </div>
     </div>
 
     <!-- 목록형 -->
     <div class="list-view" id="listView">
       <div class="list-header">
-        <span style="text-align:center">번호</span>
-        <span>제목</span>
-        <span style="text-align:center">작성자</span>
-        <span style="text-align:center">날짜</span>
-        <span style="text-align:center">조회</span>
+        <span style="text-align:center" data-t="list_num">번호</span>
+        <span data-t="list_title">제목</span>
+        <span style="text-align:center" data-t="list_author">작성자</span>
+        <span style="text-align:center" data-t="list_date">날짜</span>
+        <span style="text-align:center" data-t="list_views">조회</span>
       </div>
       <div id="listContainer"></div>
     </div>
@@ -254,7 +263,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,
     <div class="side-card">
       <div class="side-title">
         <div class="side-title-icon" style="background:var(--green-100)">📢</div>
-        최신 공지사항
+        <span data-t="side_latest">최신 공지사항</span>
       </div>
       <div class="notice-item" onclick="switchTab('notice')">
         <div class="notice-dot"></div>
@@ -557,5 +566,6 @@ function searchTag(tag) {
 
 render();
 </script>
+<script src="lang.js"></script>
 </body>
 </html>
