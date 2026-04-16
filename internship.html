@@ -137,7 +137,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,
     <a href="education.html" class="nav-link">직무교육</a>
     <a href="internship.html" class="nav-link active">인턴십</a>
   </div>
-  <a href="#" class="nav-cta">로그인</a>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div style="display:flex;gap:4px">
+      <button class="lang-btn" data-lang="ko" onclick="setLang('ko')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">한</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">EN</button>
+      <button class="lang-btn" data-lang="zh" onclick="setLang('zh')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">中</button>
+      <button class="lang-btn" data-lang="ja" onclick="setLang('ja')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">日</button>
+      <button class="lang-btn" data-lang="vi" onclick="setLang('vi')" style="padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s">VI</button>
+    </div>
+    <a href="#" class="nav-cta" data-t="nav_login">로그인</a>
+  </div>
 </nav>
 
 <div class="notice-banner">
