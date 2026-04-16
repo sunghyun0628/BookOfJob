@@ -6,134 +6,83 @@
 <title>K-WorkBridge — 다문화 청년 취업 플랫폼</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --green-50: #f0f7e8;
-  --green-100: #e4f0d5;
-  --green-200: #c8e3aa;
-  --green-400: #8bbe5a;
-  --green-600: #5a8f2e;
-  --green-800: #2d5010;
-  --gray-50: #f8f9f7;
-  --gray-100: #f0f2ee;
-  --gray-300: #c8cdc3;
-  --gray-500: #7a8270;
-  --gray-700: #3d4438;
-  --gray-900: #1a1f16;
-  --white: #ffffff;
-  --font-display: 'DM Serif Display', serif;
-  --font-body: 'Noto Sans KR', sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--white);color:var(--gray-900);font-family:var(--font-body);font-weight:300;line-height:1.7;overflow-x:hidden}
-
-/* NAV */
+:root{--green-50:#f0f7e8;--green-100:#e4f0d5;--green-200:#c8e3aa;--green-400:#8bbe5a;--green-600:#5a8f2e;--green-800:#2d5010;--gray-50:#f8f9f7;--gray-100:#f0f2ee;--gray-300:#c8cdc3;--gray-500:#7a8270;--gray-700:#3d4438;--gray-900:#1a1f16;--white:#fff}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--gray-900);font-family:'Noto Sans KR',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--green-100);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo-icon{width:32px;height:32px;background:var(--green-600);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:500;font-family:var(--font-display)}
-.nav-logo-text{font-size:17px;font-weight:500;color:var(--gray-900);letter-spacing:-0.02em}
-.nav-logo-text span{color:var(--green-600)}
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-links a{font-size:14px;color:var(--gray-500);text-decoration:none;transition:color 0.2s}
-.nav-links a:hover{color:var(--green-600)}
-.lang-switcher{display:flex;gap:6px}
-.lang-btn{padding:4px 10px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:var(--font-body);transition:all 0.2s}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-icon{width:32px;height:32px;background:var(--green-600);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;font-weight:500}
+.nav-logo-text{font-size:17px;font-weight:500;color:var(--gray-900)}.nav-logo-text span{color:var(--green-600)}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-link{padding:6px 14px;border-radius:8px;font-size:14px;color:var(--gray-500);text-decoration:none;transition:all 0.2s}
+.nav-link:hover,.nav-link.active{background:var(--green-100);color:var(--green-800)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang-switcher{display:flex;gap:4px}
+.lang-btn{padding:4px 9px;border-radius:20px;border:1px solid var(--green-200);background:transparent;font-size:12px;color:var(--gray-500);cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:all 0.2s}
 .lang-btn.active,.lang-btn:hover{background:var(--green-600);color:white;border-color:var(--green-600)}
-.nav-cta{padding:9px 22px;background:var(--green-600);color:white;border:none;border-radius:8px;font-size:14px;font-family:var(--font-body);cursor:pointer;transition:background 0.2s;text-decoration:none}
+.nav-cta{padding:9px 20px;background:var(--green-600);color:white;border:none;border-radius:8px;font-size:14px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
 .nav-cta:hover{background:var(--green-800)}
-
-/* HERO */
-.hero{min-height:100vh;padding:120px 48px 80px;display:flex;align-items:center;background:linear-gradient(160deg, var(--white) 0%, var(--green-50) 50%, var(--green-100) 100%);position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle, rgba(228,240,213,0.6) 0%, transparent 70%);pointer-events:none}
-.hero::after{content:'';position:absolute;bottom:-50px;left:-50px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle, rgba(200,227,170,0.3) 0%, transparent 70%);pointer-events:none}
+.hero{min-height:100vh;padding:120px 48px 80px;display:flex;align-items:center;background:linear-gradient(160deg,var(--white) 0%,var(--green-50) 50%,var(--green-100) 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(228,240,213,0.6) 0%,transparent 70%);pointer-events:none}
 .hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1}
 .hero-left{animation:fadeUp 0.8s ease both}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:var(--green-100);border:1px solid var(--green-200);border-radius:20px;font-size:12px;color:var(--green-800);margin-bottom:28px;font-weight:400}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:var(--green-100);border:1px solid var(--green-200);border-radius:20px;font-size:12px;color:var(--green-800);margin-bottom:28px}
 .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green-600)}
-h1{font-family:var(--font-display);font-size:clamp(40px,5vw,62px);font-weight:400;line-height:1.15;color:var(--gray-900);margin-bottom:20px;letter-spacing:-0.02em}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(40px,5vw,62px);font-weight:400;line-height:1.15;color:var(--gray-900);margin-bottom:20px;letter-spacing:-0.02em}
 h1 em{font-style:italic;color:var(--green-600)}
-h1 .sub-lang{display:block;font-size:clamp(16px,2vw,22px);color:var(--gray-500);margin-top:8px;font-family:var(--font-body);font-weight:300}
+h1 .sub-lang{display:block;font-size:clamp(16px,2vw,22px);color:var(--gray-500);margin-top:8px;font-family:'Noto Sans KR',sans-serif;font-weight:300}
 .hero-desc{font-size:16px;color:var(--gray-500);line-height:1.8;margin-bottom:40px;max-width:460px}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
-.btn-primary{padding:14px 32px;background:var(--green-600);color:white;border:none;border-radius:10px;font-size:15px;font-family:var(--font-body);cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-block}
+.btn-primary{padding:14px 32px;background:var(--green-600);color:white;border:none;border-radius:10px;font-size:15px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-block}
 .btn-primary:hover{background:var(--green-800);transform:translateY(-2px)}
-.btn-secondary{padding:14px 32px;background:transparent;color:var(--green-600);border:1.5px solid var(--green-400);border-radius:10px;font-size:15px;font-family:var(--font-body);cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-block}
+.btn-secondary{padding:14px 32px;background:transparent;color:var(--green-600);border:1.5px solid var(--green-400);border-radius:10px;font-size:15px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;text-decoration:none;transition:all 0.2s;display:inline-block}
 .btn-secondary:hover{background:var(--green-50);transform:translateY(-2px)}
 .hero-stats{display:flex;gap:36px;margin-top:52px;padding-top:36px;border-top:1px solid var(--green-200)}
-.stat{text-align:left}
-.stat-num{font-family:var(--font-display);font-size:32px;color:var(--green-600);display:block;line-height:1}
+.stat-num{font-family:'DM Serif Display',serif;font-size:32px;color:var(--green-600);display:block;line-height:1}
 .stat-label{font-size:12px;color:var(--gray-500);margin-top:4px}
-
-/* HERO RIGHT — 플로우 카드 */
 .hero-right{animation:fadeUp 0.8s 0.2s ease both}
 .flow-cards{display:flex;flex-direction:column;gap:16px}
 .flow-card{background:white;border:1px solid var(--green-100);border-radius:16px;padding:24px 28px;display:flex;align-items:flex-start;gap:18px;transition:all 0.3s;box-shadow:0 2px 12px rgba(90,143,46,0.06)}
 .flow-card:hover{border-color:var(--green-400);box-shadow:0 8px 32px rgba(90,143,46,0.12);transform:translateX(4px)}
-.flow-card-num{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:18px;flex-shrink:0}
-.fc1 .flow-card-num{background:#e8f4fd;color:#2563eb}
-.fc2 .flow-card-num{background:#fef3e2;color:#d97706}
-.fc3 .flow-card-num{background:var(--green-100);color:var(--green-600)}
-.flow-card-content{}
+.flow-card-num{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:18px;flex-shrink:0}
+.fc1 .flow-card-num{background:#e8f4fd;color:#2563eb}.fc2 .flow-card-num{background:#fef3e2;color:#d97706}.fc3 .flow-card-num{background:var(--green-100);color:var(--green-600)}
 .flow-card-title{font-size:15px;font-weight:500;color:var(--gray-900);margin-bottom:4px}
 .flow-card-desc{font-size:13px;color:var(--gray-500);line-height:1.6}
 .flow-arrow{text-align:center;color:var(--green-400);font-size:18px;margin:-4px 0}
-
-/* SECTION 공통 */
 section{padding:100px 48px}
 .section-inner{max-width:1200px;margin:0 auto}
 .section-label{font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--green-600);margin-bottom:12px;font-weight:400}
-.section-title{font-family:var(--font-display);font-size:clamp(30px,4vw,46px);font-weight:400;color:var(--gray-900);line-height:1.2;margin-bottom:16px}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(30px,4vw,46px);font-weight:400;color:var(--gray-900);line-height:1.2;margin-bottom:16px}
 .section-desc{font-size:16px;color:var(--gray-500);max-width:560px;line-height:1.8}
-
-/* FEATURES */
 .features{background:var(--gray-50)}
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
 .feature-card{background:white;border:1px solid var(--green-100);border-radius:16px;padding:36px 32px;transition:all 0.3s}
 .feature-card:hover{border-color:var(--green-400);box-shadow:0 12px 40px rgba(90,143,46,0.1);transform:translateY(-4px)}
 .feature-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:24px}
-.fi-blue{background:#eff6ff}
-.fi-amber{background:#fffbeb}
-.fi-green{background:var(--green-100)}
-.fi-purple{background:#f5f3ff}
-.fi-pink{background:#fdf2f8}
-.fi-teal{background:#f0fdfa}
+.fi-blue{background:#eff6ff}.fi-amber{background:#fffbeb}.fi-green{background:var(--green-100)}.fi-purple{background:#f5f3ff}.fi-pink{background:#fdf2f8}.fi-teal{background:#f0fdfa}
 .feature-title{font-size:17px;font-weight:500;color:var(--gray-900);margin-bottom:10px}
 .feature-desc{font-size:14px;color:var(--gray-500);line-height:1.75}
-
-/* HOW IT WORKS */
 .how{background:white}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:60px;position:relative}
 .steps::before{content:'';position:absolute;top:36px;left:16.67%;right:16.67%;height:2px;background:linear-gradient(90deg,var(--green-200),var(--green-400),var(--green-200));z-index:0}
 .step{text-align:center;padding:0 24px;position:relative;z-index:1}
 .step-circle{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 28px;font-size:28px;border:3px solid white;box-shadow:0 0 0 2px var(--green-200)}
-.sc1{background:#eff6ff}
-.sc2{background:#fffbeb}
-.sc3{background:var(--green-100)}
-.step-num{font-family:var(--font-display);font-size:13px;color:var(--green-600);margin-bottom:8px}
+.sc1{background:#eff6ff}.sc2{background:#fffbeb}.sc3{background:var(--green-100)}
+.step-num{font-family:'DM Serif Display',serif;font-size:13px;color:var(--green-600);margin-bottom:8px}
 .step-title{font-size:18px;font-weight:500;color:var(--gray-900);margin-bottom:10px}
 .step-desc{font-size:14px;color:var(--gray-500);line-height:1.75}
 .step-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:16px}
 .step-tag{padding:4px 12px;background:var(--green-50);border:1px solid var(--green-200);border-radius:20px;font-size:12px;color:var(--green-800)}
-
-/* LANGUAGES */
 .languages{background:var(--green-800);color:white;padding:80px 48px}
 .languages .section-label{color:var(--green-200)}
 .languages .section-title{color:white}
-.languages .section-desc{color:rgba(255,255,255,0.6)}
 .lang-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:48px}
 .lang-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:28px 20px;text-align:center;transition:all 0.3s}
 .lang-card:hover{background:rgba(255,255,255,0.15);transform:translateY(-4px)}
 .lang-flag{font-size:36px;display:block;margin-bottom:12px}
 .lang-name{font-size:15px;font-weight:500;color:white;margin-bottom:4px}
 .lang-native{font-size:13px;color:rgba(255,255,255,0.5)}
-
-/* CTA */
-.cta-section{background:linear-gradient(135deg, var(--green-100) 0%, var(--green-50) 100%);padding:100px 48px;text-align:center}
-.cta-section .section-title{margin:0 auto 16px}
-.cta-section .section-desc{margin:0 auto 40px;text-align:center}
-.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-
-/* FOOTER */
+.cta-section{background:linear-gradient(135deg,var(--green-100) 0%,var(--green-50) 100%);padding:100px 48px;text-align:center}
 footer{background:var(--gray-900);color:rgba(255,255,255,0.5);padding:60px 48px 40px}
 .footer-inner{max-width:1200px;margin:0 auto}
 .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
@@ -143,106 +92,65 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.5);padding:60px 48px 
 .footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:8px;transition:color 0.2s}
 .footer-col a:hover{color:var(--green-200)}
 .footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:28px;display:flex;justify-content:space-between;font-size:12px}
-
-/* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  nav{padding:0 24px}
-  .nav-links{display:none}
-  .hero{padding:100px 24px 60px}
-  .hero-inner{grid-template-columns:1fr;gap:48px}
-  .features-grid{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr;gap:32px}
-  .steps::before{display:none}
-  .lang-cards{grid-template-columns:repeat(3,1fr)}
-  .footer-top{grid-template-columns:1fr 1fr}
-  section{padding:60px 24px}
-}
+@media(max-width:900px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 24px 60px}.hero-inner{grid-template-columns:1fr;gap:48px}.features-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr;gap:32px}.steps::before{display:none}.lang-cards{grid-template-columns:repeat(3,1fr)}.footer-top{grid-template-columns:1fr 1fr}section{padding:60px 24px}}
 </style>
 </head>
 <body>
-
 <nav>
-  <div class="nav-logo">
+  <a href="index.html" class="nav-logo">
     <div class="nav-logo-icon">K</div>
     <div class="nav-logo-text">K-Work<span>Bridge</span></div>
-  </div>
+  </a>
   <div class="nav-links">
-    <a href="#features" data-ko="서비스 소개" data-en="Features" data-zh="功能介绍" data-ja="機能紹介" data-vi="Tính năng">서비스 소개</a>
-    <a href="board.html" data-ko="커뮤니티" data-en="Community" data-zh="社区" data-ja="コミュニティ" data-vi="Cộng đồng">커뮤니티</a>
-    <a href="#how" data-ko="이용방법" data-en="How it works" data-zh="使用方法" data-ja="使い方" data-vi="Cách dùng">이용방법</a>
-    <a href="#languages" data-ko="지원언어" data-en="Languages" data-zh="支持语言" data-ja="対応言語" data-vi="Ngôn ngữ">지원언어</a>
+    <a href="index.html" class="nav-link active" data-t="nav_home">홈</a>
+    <a href="board.html" class="nav-link" data-t="nav_community">커뮤니티</a>
+    <a href="education.html" class="nav-link" data-t="nav_education">직무교육</a>
+    <a href="internship.html" class="nav-link" data-t="nav_internship">인턴십</a>
   </div>
-  <div style="display:flex;align-items:center;gap:16px">
+  <div class="nav-right">
     <div class="lang-switcher">
-      <button class="lang-btn active" onclick="setLang('ko')">한</button>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" onclick="setLang('zh')">中</button>
-      <button class="lang-btn" onclick="setLang('ja')">日</button>
-      <button class="lang-btn" onclick="setLang('vi')">VI</button>
+      <button class="lang-btn" data-lang="ko" onclick="setLang('ko')">한</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中</button>
+      <button class="lang-btn" data-lang="ja" onclick="setLang('ja')">日</button>
+      <button class="lang-btn" data-lang="vi" onclick="setLang('vi')">VI</button>
     </div>
-    <a href="#" class="nav-cta" data-ko="무료로 시작하기" data-en="Get Started" data-zh="免费开始" data-ja="無料で始める" data-vi="Bắt đầu miễn phí">무료로 시작하기</a>
+    <a href="board.html" class="nav-cta" data-t="nav_start">무료로 시작하기</a>
   </div>
 </nav>
 
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-left">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        <span data-ko="다문화 청년을 위한 취업 플랫폼" data-en="Career Platform for Multicultural Youth" data-zh="面向多文化青年的就业平台" data-ja="多文化青年のためのキャリアプラットフォーム" data-vi="Nền tảng việc làm cho thanh niên đa văn hóa">다문화 청년을 위한 취업 플랫폼</span>
-      </div>
-      <h1>
-        <span data-ko="커뮤니티에서" data-en="From Community" data-zh="从社区" data-ja="コミュニティから" data-vi="Từ Cộng đồng">커뮤니티에서</span><br>
-        <em data-ko="커리어까지" data-en="to Career" data-zh="到职业" data-ja="キャリアへ" data-vi="đến Sự nghiệp">커리어까지</em>
-        <span class="sub-lang" data-ko="국내 다문화 청년의 취업을 잇다" data-en="Bridging multicultural youth to Korean careers" data-zh="连接国内多文化青年的就业之路" data-ja="国内多文化青年の就職をつなぐ" data-vi="Kết nối thanh niên đa văn hóa với việc làm tại Hàn Quốc">국내 다문화 청년의 취업을 잇다</span>
-      </h1>
-      <p class="hero-desc" data-ko="K-WorkBridge는 국내 거주 다문화 가정 청년 대학생을 위한 커뮤니티 기반 인턴십 매칭 및 직무 교육 통합 플랫폼입니다. 함께 성장하고, 함께 취업하세요." data-en="K-WorkBridge is a community-based internship matching and job training platform for multicultural university students in Korea. Grow together, succeed together." data-zh="K-WorkBridge是面向在韩多文化家庭大学生的社区型实习匹配和职业培训综合平台。共同成长，共同就业。" data-ja="K-WorkBridgeは、国内在住の多文化家庭の大学生向けコミュニティ型インターンシップマッチング・職務教育統合プラットフォームです。" data-vi="K-WorkBridge là nền tảng kết hợp cộng đồng, đào tạo nghề và tuyển dụng thực tập sinh cho sinh viên đa văn hóa tại Hàn Quốc.">K-WorkBridge는 국내 거주 다문화 가정 청년 대학생을 위한 커뮤니티 기반 인턴십 매칭 및 직무 교육 통합 플랫폼입니다. 함께 성장하고, 함께 취업하세요.</p>
+      <div class="hero-badge"><span class="hero-badge-dot"></span><span data-t="hero_badge">다문화 청년을 위한 취업 플랫폼</span></div>
+      <h1><span data-t="hero_h1_1">커뮤니티에서</span><br><em data-t="hero_h1_2">커리어까지</em><span class="sub-lang" data-t="hero_sub">국내 다문화 청년의 취업을 잇다</span></h1>
+      <p class="hero-desc" data-t="hero_desc">K-WorkBridge는 국내 거주 다문화 가정 청년 대학생을 위한 커뮤니티 기반 인턴십 매칭 및 직무 교육 통합 플랫폼입니다. 함께 성장하고, 함께 취업하세요.</p>
       <div class="hero-btns">
-        <a href="#" class="btn-primary" data-ko="지금 시작하기" data-en="Start Now" data-zh="立即开始" data-ja="今すぐ始める" data-vi="Bắt đầu ngay">지금 시작하기</a>
-        <a href="board.html" class="btn-secondary" data-ko="서비스 알아보기" data-en="Learn More" data-zh="了解更多" data-ja="詳しく見る" data-vi="Tìm hiểu thêm">서비스 알아보기</a>
+        <a href="board.html" class="btn-primary" data-t="hero_btn1">지금 시작하기</a>
+        <a href="education.html" class="btn-secondary" data-t="hero_btn2">서비스 알아보기</a>
       </div>
       <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-num">3단계</span>
-          <span class="stat-label" data-ko="체계적인 취업 여정" data-en="Structured career journey" data-zh="系统化就业旅程" data-ja="体系的な就職の旅" data-vi="Hành trình nghề nghiệp">체계적인 취업 여정</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num">5개</span>
-          <span class="stat-label" data-ko="지원 언어" data-en="Supported languages" data-zh="支持语言" data-ja="対応言語" data-vi="Ngôn ngữ hỗ trợ">지원 언어</span>
-        </div>
-        <div class="stat">
-          <span class="stat-num">100%</span>
-          <span class="stat-label" data-ko="무료 서비스" data-en="Free service" data-zh="免费服务" data-ja="無料サービス" data-vi="Dịch vụ miễn phí">무료 서비스</span>
-        </div>
+        <div class="stat"><span class="stat-num" data-t="stat1_num">3단계</span><span class="stat-label" data-t="stat1_label">체계적인 취업 여정</span></div>
+        <div class="stat"><span class="stat-num" data-t="stat2_num">5개</span><span class="stat-label" data-t="stat2_label">지원 언어</span></div>
+        <div class="stat"><span class="stat-num" data-t="stat3_num">100%</span><span class="stat-label" data-t="stat3_label">무료 서비스</span></div>
       </div>
     </div>
     <div class="hero-right">
       <div class="flow-cards">
         <div class="flow-card fc1" onclick="location.href='board.html'" style="cursor:pointer">
           <div class="flow-card-num">01</div>
-          <div class="flow-card-content">
-            <div class="flow-card-title" data-ko="커뮤니티 활동" data-en="Community Activity" data-zh="社区活动" data-ja="コミュニティ活動" data-vi="Hoạt động Cộng đồng">커뮤니티 활동</div>
-            <div class="flow-card-desc" data-ko="같은 배경을 가진 청년들과 네트워크를 형성하고, 정보를 공유하며 함께 성장합니다." data-en="Build networks with peers who share similar backgrounds, share information and grow together." data-zh="与有相似背景的青年建立网络，分享信息，共同成长。" data-ja="同じ背景を持つ仲間とネットワークを構築し、情報を共有して共に成長します。" data-vi="Xây dựng mạng lưới với các bạn trẻ có cùng hoàn cảnh, chia sẻ thông tin và cùng nhau phát triển.">같은 배경을 가진 청년들과 네트워크를 형성하고, 정보를 공유하며 함께 성장합니다.</div>
-          </div>
+          <div><div class="flow-card-title" data-t="flow1_title">커뮤니티 활동</div><div class="flow-card-desc" data-t="flow1_desc">같은 배경을 가진 청년들과 네트워크를 형성하고, 정보를 공유하며 함께 성장합니다.</div></div>
         </div>
         <div class="flow-arrow">↓</div>
-        <div class="flow-card fc2">
+        <div class="flow-card fc2" onclick="location.href='education.html'" style="cursor:pointer">
           <div class="flow-card-num">02</div>
-          <div class="flow-card-content">
-            <div class="flow-card-title" data-ko="직무 교육" data-en="Job Training" data-zh="职业培训" data-ja="職務教育" data-vi="Đào tạo Nghề">직무 교육</div>
-            <div class="flow-card-desc" data-ko="실무 중심의 직무 교육으로 취업에 필요한 역량을 체계적으로 쌓습니다." data-en="Build skills needed for employment through practical, work-focused training programs." data-zh="通过以实践为中心的职业培训，系统地积累就业所需能力。" data-ja="実務中心の職務教育で、就職に必要な能力を体系的に積み上げます。" data-vi="Xây dựng năng lực cần thiết cho việc làm thông qua các chương trình đào tạo thực tế.">실무 중심의 직무 교육으로 취업에 필요한 역량을 체계적으로 쌓습니다.</div>
-          </div>
+          <div><div class="flow-card-title" data-t="flow2_title">직무 교육</div><div class="flow-card-desc" data-t="flow2_desc">실무 중심의 직무 교육으로 취업에 필요한 역량을 체계적으로 쌓습니다.</div></div>
         </div>
         <div class="flow-arrow">↓</div>
-        <div class="flow-card fc3">
+        <div class="flow-card fc3" onclick="location.href='internship.html'" style="cursor:pointer">
           <div class="flow-card-num">03</div>
-          <div class="flow-card-content">
-            <div class="flow-card-title" data-ko="인턴십 매칭" data-en="Internship Matching" data-zh="实习匹配" data-ja="インターンシップマッチング" data-vi="Kết nối Thực tập">인턴십 매칭</div>
-            <div class="flow-card-desc" data-ko="AI 기반 매칭 시스템으로 나에게 맞는 인턴십 기회를 연결해 드립니다." data-en="Our AI-powered matching system connects you with internship opportunities that fit your profile." data-zh="通过AI匹配系统，为您推荐最适合的实习机会。" data-ja="AIマッチングシステムで、あなたに合ったインターンシップの機会を繋ぎます。" data-vi="Hệ thống kết nối AI giúp bạn tìm kiếm cơ hội thực tập phù hợp nhất.">AI 기반 매칭 시스템으로 나에게 맞는 인턴십 기회를 연결해 드립니다.</div>
-          </div>
+          <div><div class="flow-card-title" data-t="flow3_title">인턴십 매칭</div><div class="flow-card-desc" data-t="flow3_desc">AI 기반 매칭 시스템으로 나에게 맞는 인턴십 기회를 연결해 드립니다.</div></div>
         </div>
       </div>
     </div>
@@ -251,80 +159,27 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.5);padding:60px 48px 
 
 <section class="features" id="features">
   <div class="section-inner">
-    <div class="section-label" data-ko="핵심 기능" data-en="Key Features" data-zh="核心功能" data-ja="主な機能" data-vi="Tính năng chính">핵심 기능</div>
-    <div class="section-title" data-ko="취업을 위한 모든 것을<br>한 곳에서" data-en="Everything for your career<br>in one place" data-zh="一站式就业服务" data-ja="就職のすべてを<br>一か所で" data-vi="Tất cả cho sự nghiệp<br>của bạn">취업을 위한 모든 것을<br>한 곳에서</div>
+    <div class="section-label" data-t="feat_label">핵심 기능</div>
+    <div class="section-title" data-t="feat_title">취업을 위한 모든 것을<br>한 곳에서</div>
     <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon fi-blue">🤝</div>
-        <div class="feature-title" data-ko="커뮤니티 네트워킹" data-en="Community Networking" data-zh="社区网络" data-ja="コミュニティネットワーキング" data-vi="Mạng lưới Cộng đồng">커뮤니티 네트워킹</div>
-        <div class="feature-desc" data-ko="다문화 청년들이 서로 연결되고 경험을 공유할 수 있는 안전한 커뮤니티 공간을 제공합니다." data-en="A safe community space where multicultural youth can connect and share experiences." data-zh="为多文化青年提供安全的社区空间，相互连接并分享经验。" data-ja="多文化青年が繋がり、経験を共有できる安全なコミュニティスペース。" data-vi="Không gian cộng đồng an toàn để thanh niên đa văn hóa kết nối và chia sẻ kinh nghiệm.">다문화 청년들이 서로 연결되고 경험을 공유할 수 있는 안전한 커뮤니티 공간을 제공합니다.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon fi-amber">📚</div>
-        <div class="feature-title" data-ko="맞춤형 직무 교육" data-en="Customized Job Training" data-zh="定制职业培训" data-ja="カスタマイズ職務教育" data-vi="Đào tạo Nghề Tùy chỉnh">맞춤형 직무 교육</div>
-        <div class="feature-desc" data-ko="IT, 마케팅, 경영 등 다양한 분야의 실무 교육 과정을 5개 언어로 제공합니다." data-en="Practical training courses in IT, marketing, management and more, available in 5 languages." data-zh="提供IT、营销、管理等多个领域的实践培训课程，支持5种语言。" data-ja="IT、マーケティング、経営など多様な分野の実務教育を5言語で提供します。" data-vi="Các khóa đào tạo thực tế về IT, marketing, quản lý và nhiều lĩnh vực khác bằng 5 ngôn ngữ.">IT, 마케팅, 경영 등 다양한 분야의 실무 교육 과정을 5개 언어로 제공합니다.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon fi-green">🎯</div>
-        <div class="feature-title" data-ko="AI 인턴십 매칭" data-en="AI Internship Matching" data-zh="AI实习匹配" data-ja="AIインターンシップマッチング" data-vi="Kết nối Thực tập AI">AI 인턴십 매칭</div>
-        <div class="feature-desc" data-ko="개인의 역량과 관심사를 분석하여 최적의 인턴십 기회를 자동으로 매칭해 드립니다." data-en="Automatically matches you with the best internship opportunities based on your skills and interests." data-zh="分析个人能力和兴趣，自动匹配最佳实习机会。" data-ja="個人の能力と関心を分析し、最適なインターンシップを自動マッチングします。" data-vi="Tự động kết nối bạn với cơ hội thực tập tốt nhất dựa trên kỹ năng và sở thích.">개인의 역량과 관심사를 분석하여 최적의 인턴십 기회를 자동으로 매칭해 드립니다.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon fi-purple">🌐</div>
-        <div class="feature-title" data-ko="5개 언어 지원" data-en="5 Language Support" data-zh="5种语言支持" data-ja="5言語対応" data-vi="Hỗ trợ 5 Ngôn ngữ">5개 언어 지원</div>
-        <div class="feature-desc" data-ko="한국어, 영어, 중국어, 일본어, 베트남어로 모든 서비스를 이용할 수 있습니다." data-en="All services available in Korean, English, Chinese, Japanese, and Vietnamese." data-zh="所有服务支持韩语、英语、中文、日语和越南语。" data-ja="韓国語、英語、中国語、日本語、ベトナム語でサービスをご利用いただけます。" data-vi="Tất cả dịch vụ có sẵn bằng tiếng Hàn, tiếng Anh, tiếng Trung, tiếng Nhật và tiếng Việt.">한국어, 영어, 중국어, 일본어, 베트남어로 모든 서비스를 이용할 수 있습니다.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon fi-pink">💼</div>
-        <div class="feature-title" data-ko="이력서 & 포트폴리오" data-en="Resume & Portfolio" data-zh="简历与作品集" data-ja="履歴書＆ポートフォリオ" data-vi="Hồ sơ & Portfolio">이력서 & 포트폴리오</div>
-        <div class="feature-desc" data-ko="전문가 템플릿으로 한국형 이력서와 포트폴리오를 쉽게 만들 수 있습니다." data-en="Easily create Korean-style resumes and portfolios using professional templates." data-zh="使用专业模板轻松制作韩式简历和作品集。" data-ja="プロ用テンプレートで韓国式履歴書とポートフォリオを簡単に作成できます。" data-vi="Dễ dàng tạo hồ sơ và portfolio theo phong cách Hàn Quốc với các mẫu chuyên nghiệp.">전문가 템플릿으로 한국형 이력서와 포트폴리오를 쉽게 만들 수 있습니다.</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon fi-teal">🏢</div>
-        <div class="feature-title" data-ko="기업 파트너십" data-en="Corporate Partnership" data-zh="企业合作" data-ja="企業パートナーシップ" data-vi="Hợp tác Doanh nghiệp">기업 파트너십</div>
-        <div class="feature-desc" data-ko="다양성을 중시하는 국내 기업들과 협력하여 실질적인 취업 기회를 제공합니다." data-en="Partnering with diversity-focused Korean companies to provide real employment opportunities." data-zh="与重视多样性的国内企业合作，提供实质性的就业机会。" data-ja="多様性を重視する国内企業と協力し、実質的な就職機会を提供します。" data-vi="Hợp tác với các công ty Hàn Quốc coi trọng đa dạng để cung cấp cơ hội việc làm thực sự.">다양성을 중시하는 국내 기업들과 협력하여 실질적인 취업 기회를 제공합니다.</div>
-      </div>
+      <div class="feature-card" onclick="location.href='board.html'" style="cursor:pointer"><div class="feature-icon fi-blue">🤝</div><div class="feature-title" data-t="feat1_title">커뮤니티 네트워킹</div><div class="feature-desc" data-t="feat1_desc">다문화 청년들이 서로 연결되고 경험을 공유할 수 있는 안전한 커뮤니티 공간을 제공합니다.</div></div>
+      <div class="feature-card" onclick="location.href='education.html'" style="cursor:pointer"><div class="feature-icon fi-amber">📚</div><div class="feature-title" data-t="feat2_title">맞춤형 직무 교육</div><div class="feature-desc" data-t="feat2_desc">IT, 마케팅, 경영 등 다양한 분야의 실무 교육 과정을 5개 언어로 제공합니다.</div></div>
+      <div class="feature-card" onclick="location.href='internship.html'" style="cursor:pointer"><div class="feature-icon fi-green">🎯</div><div class="feature-title" data-t="feat3_title">AI 인턴십 매칭</div><div class="feature-desc" data-t="feat3_desc">개인의 역량과 관심사를 분석하여 최적의 인턴십 기회를 자동으로 매칭해 드립니다.</div></div>
+      <div class="feature-card"><div class="feature-icon fi-purple">🌐</div><div class="feature-title" data-t="feat4_title">5개 언어 지원</div><div class="feature-desc" data-t="feat4_desc">한국어, 영어, 중국어, 일본어, 베트남어로 모든 서비스를 이용할 수 있습니다.</div></div>
+      <div class="feature-card"><div class="feature-icon fi-pink">💼</div><div class="feature-title" data-t="feat5_title">이력서 & 포트폴리오</div><div class="feature-desc" data-t="feat5_desc">전문가 템플릿으로 한국형 이력서와 포트폴리오를 쉽게 만들 수 있습니다.</div></div>
+      <div class="feature-card"><div class="feature-icon fi-teal">🏢</div><div class="feature-title" data-t="feat6_title">기업 파트너십</div><div class="feature-desc" data-t="feat6_desc">다양성을 중시하는 국내 기업들과 협력하여 실질적인 취업 기회를 제공합니다.</div></div>
     </div>
   </div>
 </section>
 
 <section class="how" id="how">
   <div class="section-inner">
-    <div class="section-label" data-ko="이용 방법" data-en="How It Works" data-zh="使用方法" data-ja="使い方" data-vi="Cách sử dụng">이용 방법</div>
-    <div class="section-title" data-ko="3단계로 취업을 완성하세요" data-en="Complete your career in 3 steps" data-zh="三步完成就业" data-ja="3ステップで就職を完成させる" data-vi="Hoàn thiện sự nghiệp trong 3 bước">3단계로 취업을 완성하세요</div>
+    <div class="section-label" data-t="how_label">이용 방법</div>
+    <div class="section-title" data-t="how_title">3단계로 취업을 완성하세요</div>
     <div class="steps">
-      <div class="step">
-        <div class="step-circle sc1">🤝</div>
-        <div class="step-num">STEP 01</div>
-        <div class="step-title" data-ko="커뮤니티 참여" data-en="Join Community" data-zh="加入社区" data-ja="コミュニティ参加" data-vi="Tham gia Cộng đồng">커뮤니티 참여</div>
-        <div class="step-desc" data-ko="회원가입 후 같은 배경을 가진 청년들과 연결되세요. 스터디 그룹, 멘토링, 정보 공유 등 다양한 활동에 참여할 수 있습니다." data-en="After signing up, connect with youth who share similar backgrounds. Join study groups, mentoring sessions, and information sharing activities." data-zh="注册后与有相似背景的青年建立联系。参与学习小组、导师计划和信息分享等活动。" data-ja="会員登録後、同じ背景を持つ仲間と繋がりましょう。スタディグループ、メンタリング、情報共有など様々な活動に参加できます。" data-vi="Sau khi đăng ký, kết nối với những người trẻ có hoàn cảnh tương tự. Tham gia nhóm học tập, cố vấn và chia sẻ thông tin.">회원가입 후 같은 배경을 가진 청년들과 연결되세요. 스터디 그룹, 멘토링, 정보 공유 등 다양한 활동에 참여할 수 있습니다.</div>
-        <div class="step-tags">
-          <span class="step-tag" data-ko="스터디 그룹" data-en="Study Groups" data-zh="学习小组" data-ja="スタディグループ" data-vi="Nhóm học">스터디 그룹</span>
-          <span class="step-tag" data-ko="멘토링" data-en="Mentoring" data-zh="导师计划" data-ja="メンタリング" data-vi="Cố vấn">멘토링</span>
-          <span class="step-tag" data-ko="정보 공유" data-en="Info Sharing" data-zh="信息分享" data-ja="情報共有" data-vi="Chia sẻ">정보 공유</span>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-circle sc2">📚</div>
-        <div class="step-num">STEP 02</div>
-        <div class="step-title" data-ko="직무 역량 강화" data-en="Build Job Skills" data-zh="提升职业能力" data-ja="職務能力強化" data-vi="Nâng cao Kỹ năng">직무 역량 강화</div>
-        <div class="step-desc" data-ko="IT, 마케팅, 경영 분석 등 다양한 직무 교육을 수강하세요. 모든 강의는 모국어로 제공되어 학습 장벽을 낮춥니다." data-en="Take courses in IT, marketing, business analysis and more. All lectures are available in your native language to lower learning barriers." data-zh="参加IT、营销、经营分析等多种职业培训课程。所有课程均以母语提供，降低学习障碍。" data-ja="IT、マーケティング、経営分析などの職務教育を受講してください。全ての講義は母国語で提供され、学習の障壁を低くします。" data-vi="Tham gia các khóa học IT, marketing, phân tích kinh doanh và nhiều hơn nữa. Tất cả bài giảng đều bằng tiếng mẹ đẻ.">IT, 마케팅, 경영 분석 등 다양한 직무 교육을 수강하세요. 모든 강의는 모국어로 제공되어 학습 장벽을 낮춥니다.</div>
-        <div class="step-tags">
-          <span class="step-tag">IT</span>
-          <span class="step-tag" data-ko="마케팅" data-en="Marketing" data-zh="营销" data-ja="マーケティング" data-vi="Marketing">마케팅</span>
-          <span class="step-tag" data-ko="경영" data-en="Business" data-zh="经营" data-ja="経営" data-vi="Kinh doanh">경영</span>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-circle sc3">🎯</div>
-        <div class="step-num">STEP 03</div>
-        <div class="step-title" data-ko="인턴십 매칭" data-en="Internship Match" data-zh="实习匹配" data-ja="インターンシップマッチ" data-vi="Kết nối Thực tập">인턴십 매칭</div>
-        <div class="step-desc" data-ko="교육 수료 후 AI가 당신의 역량에 맞는 인턴십을 추천합니다. 다양성을 존중하는 기업들과 연결되어 실제 커리어를 시작하세요." data-en="After completing training, AI recommends internships matching your skills. Connect with diversity-embracing companies and start your real career." data-zh="完成培训后，AI根据您的能力推荐实习机会。与尊重多样性的企业建立联系，开始真正的职业生涯。" data-ja="教育修了後、AIがあなたの能力に合ったインターンシップを推薦します。多様性を尊重する企業と繋がり、キャリアをスタートさせましょう。" data-vi="Sau khi hoàn thành đào tạo, AI đề xuất thực tập phù hợp với kỹ năng của bạn. Kết nối với các công ty tôn trọng sự đa dạng.">교육 수료 후 AI가 당신의 역량에 맞는 인턴십을 추천합니다. 다양성을 존중하는 기업들과 연결되어 실제 커리어를 시작하세요.</div>
-        <div class="step-tags">
-          <span class="step-tag" data-ko="AI 매칭" data-en="AI Matching" data-zh="AI匹配" data-ja="AIマッチング" data-vi="AI Kết nối">AI 매칭</span>
-          <span class="step-tag" data-ko="기업 연결" data-en="Company Link" data-zh="企业连接" data-ja="企業連結" data-vi="Kết nối DN">기업 연결</span>
-        </div>
-      </div>
+      <div class="step"><div class="step-circle sc1">🤝</div><div class="step-num">STEP 01</div><div class="step-title" data-t="how1_title">커뮤니티 참여</div><div class="step-desc" data-t="how1_desc">회원가입 후 같은 배경을 가진 청년들과 연결되세요. 스터디 그룹, 멘토링, 정보 공유 등 다양한 활동에 참여할 수 있습니다.</div><div class="step-tags"><span class="step-tag">스터디 그룹</span><span class="step-tag">멘토링</span></div></div>
+      <div class="step"><div class="step-circle sc2">📚</div><div class="step-num">STEP 02</div><div class="step-title" data-t="how2_title">직무 역량 강화</div><div class="step-desc" data-t="how2_desc">IT, 마케팅, 경영 분석 등 다양한 직무 교육을 수강하세요. 모든 강의는 모국어로 제공되어 학습 장벽을 낮춥니다.</div><div class="step-tags"><span class="step-tag">IT</span><span class="step-tag">마케팅</span></div></div>
+      <div class="step"><div class="step-circle sc3">🎯</div><div class="step-num">STEP 03</div><div class="step-title" data-t="how3_title">인턴십 매칭</div><div class="step-desc" data-t="how3_desc">교육 수료 후 AI가 당신의 역량에 맞는 인턴십을 추천합니다. 다양성을 존중하는 기업들과 연결되어 실제 커리어를 시작하세요.</div><div class="step-tags"><span class="step-tag">AI 매칭</span><span class="step-tag">기업 연결</span></div></div>
     </div>
   </div>
 </section>
@@ -332,46 +187,26 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.5);padding:60px 48px 
 <section class="languages" id="languages">
   <div class="section-inner">
     <div class="section-label">Multilingual Support</div>
-    <div class="section-title" data-ko="당신의 언어로 시작하세요" data-en="Start in your language" data-zh="用您的语言开始" data-ja="あなたの言語で始めましょう" data-vi="Bắt đầu bằng ngôn ngữ của bạn">당신의 언어로 시작하세요</div>
-    <div class="section-desc" style="color:rgba(255,255,255,0.6)" data-ko="언어는 장벽이 되어서는 안 됩니다. K-WorkBridge는 5개 언어로 동일한 품질의 서비스를 제공합니다." data-en="Language should never be a barrier. K-WorkBridge provides the same quality service in 5 languages." data-zh="语言不应该成为障碍。K-WorkBridge提供5种语言的同等质量服务。" data-ja="言語が障壁になるべきではありません。K-WorkBridgeは5言語で同じ品質のサービスを提供します。" data-vi="Ngôn ngữ không nên là rào cản. K-WorkBridge cung cấp dịch vụ chất lượng như nhau bằng 5 ngôn ngữ.">언어는 장벽이 되어서는 안 됩니다. K-WorkBridge는 5개 언어로 동일한 품질의 서비스를 제공합니다.</div>
+    <div class="section-title" data-t="lang_title">당신의 언어로 시작하세요</div>
+    <div class="section-desc" style="color:rgba(255,255,255,0.6)" data-t="lang_desc">언어는 장벽이 되어서는 안 됩니다. K-WorkBridge는 5개 언어로 동일한 품질의 서비스를 제공합니다.</div>
     <div class="lang-cards">
-      <div class="lang-card">
-        <span class="lang-flag">🇰🇷</span>
-        <div class="lang-name">한국어</div>
-        <div class="lang-native">Korean</div>
-      </div>
-      <div class="lang-card">
-        <span class="lang-flag">🇺🇸</span>
-        <div class="lang-name">English</div>
-        <div class="lang-native">영어</div>
-      </div>
-      <div class="lang-card">
-        <span class="lang-flag">🇨🇳</span>
-        <div class="lang-name">中文</div>
-        <div class="lang-native">중국어</div>
-      </div>
-      <div class="lang-card">
-        <span class="lang-flag">🇯🇵</span>
-        <div class="lang-name">日本語</div>
-        <div class="lang-native">일본어</div>
-      </div>
-      <div class="lang-card">
-        <span class="lang-flag">🇻🇳</span>
-        <div class="lang-name">Tiếng Việt</div>
-        <div class="lang-native">베트남어</div>
-      </div>
+      <div class="lang-card"><span class="lang-flag">🇰🇷</span><div class="lang-name">한국어</div><div class="lang-native">Korean</div></div>
+      <div class="lang-card"><span class="lang-flag">🇺🇸</span><div class="lang-name">English</div><div class="lang-native">영어</div></div>
+      <div class="lang-card"><span class="lang-flag">🇨🇳</span><div class="lang-name">中文</div><div class="lang-native">중국어</div></div>
+      <div class="lang-card"><span class="lang-flag">🇯🇵</span><div class="lang-name">日本語</div><div class="lang-native">일본어</div></div>
+      <div class="lang-card"><span class="lang-flag">🇻🇳</span><div class="lang-name">Tiếng Việt</div><div class="lang-native">베트남어</div></div>
     </div>
   </div>
 </section>
 
 <section class="cta-section">
   <div class="section-inner">
-    <div class="section-label" style="text-align:center" data-ko="지금 바로 시작하세요" data-en="Get Started Today" data-zh="立即开始" data-ja="今すぐ始めましょう" data-vi="Bắt đầu ngay hôm nay">지금 바로 시작하세요</div>
-    <div class="section-title" style="text-align:center;margin:0 auto 16px" data-ko="당신의 커리어를<br>K-WorkBridge와 함께" data-en="Your career journey<br>with K-WorkBridge" data-zh="与K-WorkBridge<br>共创您的职业生涯" data-ja="あなたのキャリアを<br>K-WorkBridgeと共に" data-vi="Hành trình sự nghiệp<br>cùng K-WorkBridge">당신의 커리어를<br>K-WorkBridge와 함께</div>
-    <p class="section-desc" style="text-align:center;margin:0 auto 40px" data-ko="무료로 가입하고 커뮤니티부터 시작하세요. 함께라면 더 빨리, 더 멀리 갈 수 있습니다." data-en="Sign up for free and start with the community. Together, we go faster and further." data-zh="免费注册，从社区开始。团结就是力量，共同前进。" data-ja="無料で登録して、コミュニティから始めましょう。一緒ならもっと速く、もっと遠くへ。" data-vi="Đăng ký miễn phí và bắt đầu từ cộng đồng. Cùng nhau, chúng ta đi xa hơn và nhanh hơn.">무료로 가입하고 커뮤니티부터 시작하세요. 함께라면 더 빨리, 더 멀리 갈 수 있습니다.</p>
-    <div class="cta-btns">
-      <a href="#" class="btn-primary" data-ko="무료로 시작하기" data-en="Start for Free" data-zh="免费开始" data-ja="無料で始める" data-vi="Bắt đầu miễn phí">무료로 시작하기</a>
-      <a href="#" class="btn-secondary" data-ko="기업 파트너 문의" data-en="Corporate Inquiry" data-zh="企业合作咨询" data-ja="企業パートナー問い合わせ" data-vi="Liên hệ doanh nghiệp">기업 파트너 문의</a>
+    <div class="section-label" style="text-align:center" data-t="cta_label">지금 바로 시작하세요</div>
+    <div class="section-title" style="text-align:center;margin:0 auto 16px" data-t="cta_title">당신의 커리어를<br>K-WorkBridge와 함께</div>
+    <p class="section-desc" style="text-align:center;margin:0 auto 40px" data-t="cta_desc">무료로 가입하고 커뮤니티부터 시작하세요. 함께라면 더 빨리, 더 멀리 갈 수 있습니다.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="board.html" class="btn-primary" data-t="cta_btn1">무료로 시작하기</a>
+      <a href="#" class="btn-secondary" data-t="cta_btn2">기업 파트너 문의</a>
     </div>
   </div>
 </section>
@@ -380,68 +215,16 @@ footer{background:var(--gray-900);color:rgba(255,255,255,0.5);padding:60px 48px 
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="nav-logo">
-          <div class="nav-logo-icon">K</div>
-          <div class="nav-logo-text">K-Work<span>Bridge</span></div>
-        </div>
-        <p data-ko="국내 다문화 가정 청년 대학생을 위한 커뮤니티 기반 인턴십 매칭 및 직무 교육 통합 플랫폼" data-en="Community-based internship matching and job training platform for multicultural university students in Korea" data-zh="面向韩国多文化家庭大学生的社区型实习匹配和职业培训综合平台" data-ja="国内多文化家庭の大学生のためのコミュニティ型インターンシップマッチング・職務教育統合プラットフォーム" data-vi="Nền tảng kết nối thực tập và đào tạo nghề dựa trên cộng đồng cho sinh viên đa văn hóa tại Hàn Quốc">국내 다문화 가정 청년 대학생을 위한 커뮤니티 기반 인턴십 매칭 및 직무 교육 통합 플랫폼</p>
+        <div class="nav-logo"><div class="nav-logo-icon">K</div><div class="nav-logo-text">K-Work<span>Bridge</span></div></div>
+        <p data-t="footer_desc">국내 다문화 가정 청년 대학생을 위한 커뮤니티 기반 인턴십 매칭 및 직무 교육 통합 플랫폼</p>
       </div>
-      <div class="footer-col">
-        <h4 data-ko="서비스" data-en="Services" data-zh="服务" data-ja="サービス" data-vi="Dịch vụ">서비스</h4>
-        <a href="board.html" data-ko="커뮤니티" data-en="Community" data-zh="社区" data-ja="コミュニティ" data-vi="Cộng đồng">커뮤니티</a>
-        <a href="#" data-ko="직무 교육" data-en="Job Training" data-zh="职业培训" data-ja="職務教育" data-vi="Đào tạo">직무 교육</a>
-        <a href="#" data-ko="인턴십 매칭" data-en="Internship" data-zh="实习匹配" data-ja="インターンシップ" data-vi="Thực tập">인턴십 매칭</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-ko="지원" data-en="Support" data-zh="支持" data-ja="サポート" data-vi="Hỗ trợ">지원</h4>
-        <a href="#" data-ko="자주 묻는 질문" data-en="FAQ" data-zh="常见问题" data-ja="よくある質問" data-vi="FAQ">자주 묻는 질문</a>
-        <a href="#" data-ko="고객센터" data-en="Help Center" data-zh="客服中心" data-ja="カスタマーセンター" data-vi="Trung tâm hỗ trợ">고객센터</a>
-        <a href="#" data-ko="공지사항" data-en="Notice" data-zh="公告" data-ja="お知らせ" data-vi="Thông báo">공지사항</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-ko="회사" data-en="Company" data-zh="公司" data-ja="会社" data-vi="Công ty">회사</h4>
-        <a href="#" data-ko="소개" data-en="About" data-zh="关于我们" data-ja="会社概要" data-vi="Giới thiệu">소개</a>
-        <a href="#" data-ko="기업 파트너십" data-en="Partnership" data-zh="企业合作" data-ja="パートナーシップ" data-vi="Hợp tác">기업 파트너십</a>
-        <a href="#" data-ko="개인정보처리방침" data-en="Privacy Policy" data-zh="隐私政策" data-ja="プライバシーポリシー" data-vi="Chính sách">개인정보처리방침</a>
-      </div>
+      <div class="footer-col"><h4 data-t="footer_service">서비스</h4><a href="board.html" data-t="footer_community">커뮤니티</a><a href="education.html" data-t="footer_education">직무 교육</a><a href="internship.html" data-t="footer_internship">인턴십 매칭</a></div>
+      <div class="footer-col"><h4 data-t="footer_support">지원</h4><a href="#" data-t="footer_faq">자주 묻는 질문</a><a href="#" data-t="footer_help">고객센터</a><a href="#" data-t="footer_notice">공지사항</a></div>
+      <div class="footer-col"><h4 data-t="footer_company">회사</h4><a href="#" data-t="footer_about">소개</a><a href="#" data-t="footer_partner">기업 파트너십</a><a href="#" data-t="footer_privacy">개인정보처리방침</a></div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 K-WorkBridge. All rights reserved.</span>
-      <span data-ko="다문화 청년의 더 나은 내일을 위해" data-en="For a better tomorrow for multicultural youth" data-zh="为多文化青年创造更美好的明天" data-ja="多文化青年のより良い明日のために" data-vi="Vì một ngày mai tươi sáng hơn cho thanh niên đa văn hóa">다문화 청년의 더 나은 내일을 위해</span>
-    </div>
+    <div class="footer-bottom"><span>© 2026 K-WorkBridge. All rights reserved.</span><span data-t="footer_copy">다문화 청년의 더 나은 내일을 위해</span></div>
   </div>
 </footer>
-
-<script>
-const translations = {
-  ko: {}, en: {}, zh: {}, ja: {}, vi: {}
-};
-
-function setLang(lang) {
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
-
-  document.querySelectorAll('[data-' + lang + ']').forEach(el => {
-    const text = el.getAttribute('data-' + lang);
-    if (text) {
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        el.placeholder = text;
-      } else {
-        el.innerHTML = text;
-      }
-    }
-  });
-
-  const htmlEl = document.documentElement;
-  const fontMap = {
-    ko: "'Noto Sans KR', sans-serif",
-    en: "'Noto Sans KR', sans-serif",
-    zh: "'Noto Sans SC', sans-serif",
-    ja: "'Noto Sans JP', sans-serif",
-    vi: "'Noto Sans KR', sans-serif"
-  };
-  document.body.style.fontFamily = fontMap[lang];
-}
-</script>
+<script src="lang.js"></script>
 </body>
 </html>
